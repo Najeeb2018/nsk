@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+<title>How to Import Text From File Into a textarea HTML Form Field</title></head>
+<body>
+<!--CHANGE LINKS BELOW TO YOUR OWN-->
+<a href="javascript:jumpto('YOU.html')">YOUTUBE</a> | 
+<a href="javascript:jumpto('.YOU2.html')">YOUT-2</a> | 
+<a href="javascript:jumpto('WALL1.html')">WALLPAPER</a> | 
+<a href="javascript:jumpto('WALL2.html')">WALLP-2</a>
+<a href="javascript:jumpto('TEXT.html')">CLI-SCRIPT</a>
+<a href="javascript:jumpto('REDUCE.html')">REDUCE-SIZE-PIC</a>
+<a href="javascript:jumpto('M3U.html')">N-M3U</a>
+<script language="javascript">
+<!--
+
+//Drop-down Document Viewer II- (c) Dynamic Drive (www.dynamicdrive.com)
+//For full source code, 100's more DHTML scripts, and TOS,
+//visit http://www.dynamicdrive.com
+
+//Specify display mode (0 or 1)
+//0 causes document to be displayed in an inline frame, while 1 in a new browser window
+var displaymode=0
+//if displaymode=0, configure inline frame attributes (ie: dimensions, intial document shown
+var iframecode='<iframe id="external" style="width:98%;height:600px" src="./WEB/Reduce-Size.html"></iframe>'
+
+/////NO NEED TO EDIT BELOW HERE////////////
+
+if (displaymode==0)
+document.write(iframecode)
+
+function jumpto(inputurl){
+if (document.getElementById&&displaymode==0)
+document.getElementById("external").src=inputurl
+else if (document.all&&displaymode==0)
+document.all.external.src=inputurl
+else{
+if (!window.win2||win2.closed)
+win2=window.open(inputurl)
+//else if win2 already exists
+else{
+win2.location=inputurl
+win2.focus()
+}
+}
+}
+//-->
+</script>
+</body>
+</html>

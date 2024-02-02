@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html>
+<head><Title>Najeeb CMD All Commands</Title>
+<style>
+textarea {
+  resize: none;
+  width: 950px;
+  height: 650px;
+ font-size: 18px;
+}
+</style>
+</head>
+<body>
+<Center>
+<textarea id="w3review" name="w3review" rows="26" cols="50">
+[Najeeb All ImageMagick Commands]
+Code:  pass_phrase.txt
+This is a secret pass-phrase, for image encryption
+-=-=-=-=-=-=-=-=-=-=-=-
+magick W_1.jpg -encipher pass_phrase.txt  -depth 8 png24:message_hidden.png
+magick message_hidden.png -decipher pass_phrase.txt message_restored.jpg
+----------------------------------------------------------------------------------------
+echo "NSK" | magick *.jpg -encipher - -transpose  -depth 8   png24:message_obfuscate.png
+echo "NSK" | magick message_obfuscate.png -transpose -decipher -  message_restored_2.png
+--------------------------------------------------------------------------------------------------
+convert W_1.jpg -encipher Pass.txt 1.png
+magick W_1.jpg -encipher Pass.txt rose.png 
+magick message_hidden.png -decipher Pass.txt S.jpg
+Here we encipher an image using another image as the passphrase:
+magick W_1.jpg -encipher W_2.jpg rose.jpg
+Decipher an Image
+magick rose.jpg -decipher W_1.jpg W_2.jpg 
+convert 1.png decipher W_1.jpg Pass.txt
+magick W_1.jpg -thumbnail 120x120 -bordercolor AliceBlue -background SteelBlue4 -polaroid 5 poloroid_5.png
+---------------------------------------------------------------------------------------------------
+Convert Image Formats:Convert PNG to JPEG:
+APP\convert input.png output.jpg
+APP\magick mogrify -format png *.*
+;-------------------------------------------------------------
+Resize Image:Resize an image to a specific width and height:
+APP\convert input.jpg -resize 800x600 output.jpg
+;-------------------------------------------------------------
+Crop Image:Crop an image to a specific region:
+APP\convert input.jpg -crop 400x300+100+50 output.jpg
+;-------------------------------------------------------------
+Rotate Image: Rotate an image by 90 degrees:
+APP\convert input.jpg -rotate 90 output.jpg
+;-------------------------------------------------------------
+Add Border:Add a 10-pixel border around the image:
+APP\ convert input.jpg -border 10 output.jpg
+;-------------------------------------------------------------
+Convert Image to Grayscale:Convert an image to grayscale:
+APP\convert input.jpg -colorspace Gray output.jpg
+;-------------------------------------------------------------
+Add Text to Image:Add text to an image:
+APP\convert input.jpg -pointsize 24 -fill white -annotate +100+100 "Hello, ImageMagick!" output.jpg
+;-------------------------------------------------------------
+Create a Thumbnail:Create a thumbnail with a maximum dimension of 100 pixels:
+APP\convert input.jpg -thumbnail 100x100 output_thumbnail.jpg
+;-------------------------------------------------------------
+Merge Images:Merge two images side by side:
+APP\convert +append left_image.jpg right_image.jpg output_merged.jpg
+;-------------------------------------------------------------
+Convert Animated GIF to Video: Convert an animated GIF to a video:
+APP\convert animation.gif video.mp4
+;-------------------------------------------------------------
+Extract Frames from Video: Extract frames from a video at a specific time:
+APP\convert -quiet -skip 2 -s 640x480 -t 1 video.mp4 frame_%d.jpg
+;-------------------------------------------------------------
+Image Composition (Overlay):Overlay one image onto another:
+APP\convert background.jpg overlay.png -geometry +100+100 -composite output_composite.jpg
+;------------------------------------------------------------------------;
+Image magick conver All Pictures in filder To PDF
+APP\convert "*.{png,jpeg}" -quality 100 outfile.pdf
+APP\convert "*.{ext1,ext2,ext3,...}" -quality 100 outfile.pdf
+APP\convert /path/to/images/*.jpg /path/to/output/output.pdf
+APP\convert /path/to/images/*.{jpg,png} /path/to/output/output.pdf
+;*************************************
+APP\convert input.jpg output.png
+APP\convert input.jpg -resize 50% output.jpg
+APP\magick mogrify -format jpg -quality 90 *.png
+APP\convert input.jpg -crop 300x200+100+50 output.jpg
+APP\convert input.jpg -rotate 90 output.jpg
+APP\convert input.jpg -bordercolor black -border 10 output.jpg
+APP\convert input.jpg -bordercolor black -border 10 output.jpg
+APP\convert input.jpg -thumbnail 100x100^ -gravity center -extent 100x100 output_thumb.jpg
+APP\convert input.jpg -blur 0x5 output_blur.jpg
+APP\convert input.jpg -pointsize 24 -fill white -annotate +100+100 "Sample Text" output.jpg
+APP\convert -delay 100 -loop 0 frame*.png animation.gif
+APP\convert +append image1.jpg image2.jpg output.jpg
+APP\convert -append image1.jpg image2.jpg output.jpg
+APP\convert input.pdf output.png
+APP\convert animation.gif frame_%d.png
+APP\convert image1.jpg image2.jpg output.pdf
+APP\convert -size 300x200 xc:white -fill red -draw "rectangle 50,50 250,150" output.jpg
+;-------------------------------------------------------------
+Change image resolution
+APP\convert image.jpg -resize 1024x768 output_file.jpg
+APP\convert image.jpg -resize 1024x768\! output_file.jpg
+APP\convert original.png -resize 100x100 new.png
+APP\convert original.png -resize 100x100^ -gravity center -extent 100x100 new.png
+APP\magick rose.jpg -resize 50% rose.png 
+;-------------------------------------------------------------
+Convert an image to a Other Formate
+APP\convert rose.jpg rose.png
+APP\magick rose.jpg rose.png
+;-------------------------------------------------------------
+Change Image To Icon
+APP\magick 1.jpg -background none -resize 128x128 -density 128x128 1.ico
+APP\magick 2.png -background none -resize 128x128 -density 128x128 2.ico
+APP\magick convert logo.png -define icon:auto-resize=128,64,48,32,16 logo.ico
+;---------------------------------------------------------------
+Reducing an image’s file size, or reducing the quality of an image
+APP\convert image.jpg -quality 75 output_file.jpg
+;---------------------------------------------------------------
+Create a collage of images (montage)
+APP\montage image1.jpg image2.jpg image3.jpg image4.jpg output_montage.jpg
+APP\montage image1.jpg image2.jpg image3.jpg image4.jpg -geometry +2+2 output_montage.jpg
+APP\montage -mode concatenate -tile 1x image1.jpg image2.jpg output_montage.jpg
+;---------------------------------------------------------------
+Convert an image to a PDF
+APP\convert output_montage.jpg output_montage.pdf
+Bonus: Merging PDF files
+APP\convert pdf1.pdf pdf2.pdf output_pdf.pdf
+;---------------------------------------------------------------
+Fancy Text
+APP\magick -size 320x85 canvas:none -font Chewy Bubble -pointsize 72 -draw "text 25,60 \'Najeeb\'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 25,60 \'Najeeb\'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 \'Najeeb\'" fuzzy-magick.png
+APP\magick -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 \'Najeeb\'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 25,60 \'Najeeb\'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 \'Najeeb\'" fuzzy-magick.png
+APP\magick input.png -colorspace RGB +sigmoidal-contrast 11.6933 -define filter:filter=Sinc -define filter:window=Jinc -define filter:lobes=3 -resize 400% -sigmoidal-contrast 11.6933 -colorspace sRGB output.png
+ ;---------------------------------------------------------------
+APP\magick -background lightblue -fill blue -font Candice -pointsize 72 label:Anthony label.gif
+APP\magick -background lightblue -fill blue  -font Candice -size 165x70 -pointsize 24 label:Anthony     label_size.gif        
+APP\magick -background lightblue -fill blue  -font Candice -size 165x70  -pointsize 24  -gravity center  label:Anthony     label_gravity.gif       
+APP\magick -background lightblue -fill blue  -font Candice -size 165x70  -pointsize 72  -gravity center  label:Anthony     label_overflow.gif
+APP\magick -background lightblue -fill blue  -font Candice -size 165x70  label:Anthony     label_size_fit.gif         
+;---------------------------------------------------------------
+APP\magick 1.jpg -background none -resize 128x128 -density 128x128 1.ico
+---------------------------------------------------------------
+APP\magick 2.png -background none -resize 128x128 -density 128x128 2.ico
+--------------------------------------------------------------
+APP\mogrify -resize 1200 *.jpg
+--------------------------------------------------------------
+FOR /R %a IN (*.svg) DO convert "%~a" "%~dpna.jpg"   ;ImageMagick
+FOR /R %%a IN (*.svg) DO convert "%%~a" "%%~dpna.jpg"
+1) Text water mark on images with ImageMagick 
+APP\magick convert N.jpg -font Font\Ampher.ttf -pointsize 150 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ NSK' fill white  text 202,102 'Copyright@ NSK'" wmark_Output.jpg
+APP\magick convert N.jpg -font Arail -pointsize 150 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ NSK' fill white  text 205,105 'Copyright@ NSK'" wmark_Output.jpg
+APP\magick convert N.jpg -font Arail -pointsize 60 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ NSK' fill white  text 205,105 'Copyright@ NSK'" wmark_Output.jpg
+--------------------------------------------------------------
+2)Fill complete image with water mark text :
+APP\magick convert -size 1400x800 xc:none -pointsize 100 -fill grey -gravity NorthWest  -draw "text 200,20 'Cool IT Help'" -gravity NorthWest -draw "text 500,400 'Cool IT Help' "    miff:- | magick composite -tile - image3.jpg  wmark_Filled_image.jpg
+--------------------------------------------------------------
+ Example 1: Resize image, specify image quality
+APP\magick convert sample.jpg -resize 12% -quality 90 output1.jpg
+         And we can give desired dimensions as well in pixels: 600 x 400
+  Example 2: Adding a swirl effect, resize
+APP\magick convert sample.jpg  -swirl 720 -resize 120% output3.jpg
+1) Image Resizing : single image                      
+APP\magick convert  sample.jpg  -resize 30%  -quality 92  output1.jpg
+     b) we can give dimensions in pixel  (800 x 600)
+APP\magick convert sample.jpg -resize 800x600 -quality 92 output2.jpg                                                   
+2) Image resize in batch :
+APP\magick mogrify -path output -resize 30% -quality 60  input/*.jpg
+    -----------------------------&--------------------
+For your reference I am giving commands here in the description, Do some hands-on with ImageMagick.
+#Watermark position param:
+bottom right corner:  SouthEast 
+bottom left corner: SouthWest 
+Watermarking on a single image
+--------------------------------------------
+APP\magick composite -gravity SouthEast logo.png  Sample4.jpg  Ouput4.jpg
+APP\magick composite -gravity SouthWest  logo.png  Sample5.jpg  Ouput5.jpg
+Batch Watermarking with image:
+-----------------------------------------------
+we have to write a .bat file with the following script code:
+@echo off
+for  %%z in (*.jpg ) do (
+   magick "%%z" logo.jpg  -gravity southeast -geometry +10+10 -composite   output/"%%z"
+)
+note:
+%%z = this will read all file name which has .jpg file extension
+-geometry +10+10 = absolute poisition param
+-----------------------------&-------------------------
+For your reference I am giving commands here in the description, Do some hands-on with ImageMagick.
+1) Text water mark on images with ImageMagick 
+APP\magick convert image2.jpg -font Arial -pointsize 150 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ NAJEEB' fill white  text 201,101 'Copyright@ NAJEEB'" wmark_Output.jpg
+2)Fill complete image with water mark text :
+APP\magick convert -size 1400x800 xc:none -pointsize 100 -fill grey -gravity NorthWest -draw "text 200,20 'NAJEEB'" -gravity NorthWest -draw "text 500,400 'NAJEEB'" miff:- | magick composite -tile - image3.jpg  wmark_Filled_image.jpg
+--------------------&----------------------------
+Command in Tutorial:
+APP\magick composite -dissolve 35% -gravity SouthEast -geometry +10+10  logo.png Sample1.jpg wmark_dissolve.jpg
+------------------------&--------------------------
+Example 1: Resize image, specify image quality
+APP\convert myimage.jpg -resize 25% -quality 92 output1.jpg
+ Example 2: Scale and rotate image data
+APP\convert input.jpg -distort SRT .5,135 output2.jpg
+ Example 3: Add a swirl effect, resize
+APP\convert input.jpg -swirl 720 -resize 120% output3.jpg
+ Example 4: Create a montage of image thumbnails
+APP\montage -label '%f' input.jpg output*.jpg -frame 3 -background '#2B81EE' montage.jpg
+Example (simple text in static location):
+APP\convert flower.jpg -font courier -fill white -pointsize 20 -annotate +50+50 'Flower' flower_annotate1.jpg
+Example (text with background at bottom):
+APP\convert flower.jpg -fill white -box '#00770080' -gravity South -pointsize 20 -annotate +0+5 '   Flower  ' flower_annotate2.jpg
+2. Cropping an image Example:
+APP\convert flower.jpg -crop 128×128+50+50 flower_crop.jpg
+3. Rotate an image Example:
+APP\convert flower.jpg -rotate 45 flower_rotate45.jpg
+4. Image montage Example:
+APP\montage flower.jpg flower_unsharp.jpg -geometry '300×200+20+20' flower_montage.jpg
+5. Animation Example:
+APP\convert flower.jpg -resize 100×100 -font courier -fill white -pointsize 20 -annotate +50+50 'Frame 1' flower_frame1.gif
+APP\convert flower.jpg -resize 100×100 -font courier -fill white -pointsize 20 -annotate +50+50 'Frame 2' flower_frame2.gif
+APP\convert flower.jpg -resize 100×100 -font courier -fill white -pointsize 20 -annotate +50+50 'Frame 3' flower_frame3.gif
+APP\convert flower.jpg -resize 100×100 -font courier -fill white -pointsize 20 -annotate +50+50 'Frame 4' flower_frame4.gif
+APP\convert -delay 100 -size 100×100 -page +0+0 flower_frame1.gif -page +0+0 flower_frame2.gif -page +0+0 flower_frame3.gif -page +0+0 flower_frame4.gif -loop 0 flower_animation.gif
+******************************************
+APP\magick convert rose.jpg rose.png
+APP\magick convert rose.jpg -resize 50% rose.png
+------------------------
+APP\magick convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 \'Magick\'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 \'Magick\'" fuzzy-magick.png
+---------------------------------------
+APP\magick convert input.png -colorspace RGB +sigmoidal-contrast 11.6933 -define filter:filter=Sinc -define filter:window=Jinc -define filter:lobes=3 -resize 400% -sigmoidal-contrast 11.6933 -colorspace sRGB output.png');
+---------------------------------------
+APP\magick animate movie.gif 
+APP\magick animate *.jpg 
+--------------------
+APP\magick convert -size 70x70 canvas:none -fill red -draw 'circle 35,35 10,30' red-circle.png
+-------------------------
+APP\magick convert -size 70x70 canvas:none -draw 'circle 35,35 35,20' -negate -channel A -gaussian-blur 0x8 white-highlight.png
+APP\magick composite -compose atop -geometry -13-17 white-highlight.png red-circle.png red-ball.png 
+------------------------------------------------
+APP\magick 1.jpg -background none -resize 128x128 -density 128x128 1.ico
+---------------------------------------------------------------
+APP\magick 2.png -background none -resize 128x128 -density 128x128 2.ico
+--------------------------------------------------------------
+APP\mogrify -resize 1200 *.jpg
+--------------------------------------------------------------
+1) Text water mark on images with ImageMagick 
+APP\magick convert image2.jpg -font Arial -pointsize 150 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ Najeeb' fill white  text 201,101 'Copyright@ Najeeb'" wmark_Output.jpg
+--------------------------------------------------------------
+2)Fill complete image with water mark text :
+APP\magick convert -size 1400x800 xc:none -pointsize 100 -fill grey -gravity NorthWest  -draw "text 200,20 'Najeeb'" -gravity NorthWest -draw "text 500,400 'Najeeb'" miff:- | magick composite -tile - image3.jpg wmark_Filled_image.jpg
+--------------------------------------------------------------
+ Example 1: Resize image, specify image quality
+APP\magick convert sample.jpg -resize 12% -quality 90 output1.jpg
+And we can give desired dimensions as well in pixels: 600 x 400
+ Example 2: Adding a swirl effect, resize
+APP\magick convert sample.jpg -swirl 720 -resize 120% output3.jpg
+1) Image Resizing : single image                      
+APP\magick convert  sample.jpg  -resize 30%  -quality 92  output1.jpg
+ We can give dimensions in pixel  (800 x 600)
+APP\magick convert sample.jpg -resize 800x600 -quality 92 output2.jpg                                                 
+2) Image resize in batch :
+APP\magick mogrify -path output -resize 30% -quality 60  input/*.jpg
+    -----------------------------&--------------------
+For your reference I am giving commands here in the description, Do some hands-on with ImageMagick.
+#Watermark position param:
+bottom right corner:  SouthEast 
+bottom left corner: SouthWest 
+Watermarking on a single image
+--------------------------------------------
+APP\magick composite -gravity SouthEast logo.png  Sample4.jpg  Ouput4.jpg
+APP\magick composite -gravity SouthWest  logo.png  Sample5.jpg  Ouput5.jpg
+Batch Watermarking with image:
+-----------------------------------------------
+we have to write a .bat file with the following script code:
+@echo off
+for  %%z in (*.jpg ) do (
+   magick "%%z" logo.jpg  -gravity southeast -geometry +10+10 -composite   output/"%%z"
+)
+note:
+%%z = this will read all file name which has .jpg file extension
+-geometry +10+10 = absolute poisition param
+-----------------------------&-------------------------
+For your reference I am giving commands here in the description, Do some hands-on with ImageMagick.
+1) Text water mark on images with ImageMagick 
+APP\magick convert image2.jpg -font Arial -pointsize 150 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ Cool IT Help' fill white  text 201,101 'Copyright@ Cool IT Help'" wmark_Output.jpg
+2)Fill complete image with water mark text :
+APP\magick convert -size 1400x800 xc:none -pointsize 100 -fill grey -gravity NorthWest  -draw "text 200,20 'Cool IT Help'" -gravity NorthWest -draw "text 500,400 'Cool IT Help'" miff:- | magick composite -tile - image3.jpg  wmark_Filled_image.jpg
+--------------------&----------------------------
+Command in Tutorial:
+APP\magick composite -dissolve 35% -gravity SouthEast -geometry +10+10  logo.png Sample1.jpg wmark_dissolve.jpg
+------------------------&--------------------------
+Example 1: Resize image, specify image quality
+APP\convert myimage.jpg -resize 25% -quality 92 output1.jpg
+ Example 2: Scale and rotate image data
+APP\convert input.jpg -distort SRT .5,135 output2.jpg
+ Example 3: Add a swirl effect, resize
+APP\convert input.jpg -swirl 720 -resize 120% output3.jpg
+ Example 4: Create a montage of image thumbnails
+APP\montage -label '%f' input.jpg output*.jpg -frame 3 -background '#2B81EE' montage.jpg
+Example (simple text in static location):
+APP\convert flower.jpg -font courier -fill white -pointsize 20 -annotate +50+50 'Flower' flower_annotate1.jpg
+Example (text with background at bottom):
+APP\convert flower.jpg -fill white -box '#00770080' -gravity South -pointsize 20 -annotate +0+5 '   Flower  ' flower_annotate2.jpg
+2. Cropping an image Example:
+APP\convert flower.jpg -crop 128×128+50+50 flower_crop.jpg
+3. Rotate an image Example:
+APP\convert flower.jpg -rotate 45 flower_rotate45.jpg
+4. Image montage Example:
+APP\montage flower.jpg flower_unsharp.jpg -geometry '300×200+20+20' flower_montage.jpg
+-----------------------------------------------------------------
+For your reference I am giving commands here in the description, Do some hands-on with ImageMagick.
+1) Text water mark on images with ImageMagick 
+APP\magick convert image2.jpg -font Arial -pointsize 150 -draw "gravity SouthEast fill red text 200, 100 'Copyright@ Cool IT Help' fill white  text 201,101 'Copyright@ Cool IT Help'" wmark_Output.jpg
+2)Fill complete image with water mark text :
+APP\magick convert -size 1400x800 xc:none -pointsize 100 -fill grey -gravity NorthWest  -draw "text 200,20 'Cool IT Help'" -gravity NorthWest -draw "text 500,400 'Cool IT Help'" miff:- | magick composite -tile - image3.jpg  wmark_Filled_image.jpg
+Code:  pass_phrase.txt
+This is a secret pass-phrase, for image encryption
+-=-=-=-=-=-=-=-=-=-=-=-
+magick W_1.jpg -encipher pass_phrase.txt  -depth 8 png24:message_hidden.png
+magick message_hidden.png -decipher pass_phrase.txt message_restored.jpg
+----------------------------------------------------------------------------------------
+echo "NSK" | magick *.jpg -encipher - -transpose  -depth 8   png24:message_obfuscate.png
+echo "NSK" | magick message_obfuscate.png -transpose -decipher -  message_restored_2.png
+--------------------------------------------------------------------------------------------------
+convert W_1.jpg -encipher Pass.txt 1.png
+magick W_1.jpg -encipher Pass.txt rose.png 
+magick message_hidden.png -decipher Pass.txt S.jpg
+Here we encipher an image using another image as the passphrase:
+magick W_1.jpg -encipher W_2.jpg rose.jpg
+Decipher an Image
+magick rose.jpg -decipher W_1.jpg W_2.jpg 
+convert 1.png decipher W_1.jpg Pass.txt
+magick W_1.jpg -thumbnail 120x120 -bordercolor AliceBlue -background SteelBlue4 -polaroid 5 poloroid_5.png
+--------------------------------------------------------------------------------------------------
+;-=-=-=-=-=-=-=-=-=-=-=-=- END -=-=-=-=-=--=-=-=-=-=-=-=-=-;
+</textarea>
+</Center>
+</body>
+</html>
+ 

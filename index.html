@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+<style type="text/css">
+
+/*Eric Meyer's based CSS tab*/
+
+#tablist{
+padding: 3px 0;
+margin-left: 0;
+margin-bottom: 0;
+margin-top: 0.1em;
+font: bold 12px Verdana;
+}
+
+#tablist li{
+list-style: none;
+display: inline;
+margin: 0;
+}
+
+#tablist li a{
+text-decoration: none;
+padding: 3px 0.5em;
+margin-left: 3px;
+border: 1px solid #778;
+border-bottom: none;
+background: white;
+}
+
+#tablist li a:link, #tablist li a:visited{
+color: navy;
+}
+
+#tablist li a:hover{
+color: #000000;
+background: #C1C1FF;
+border-color: #227;
+}
+
+#tablist li a.current{
+background: lightGreen;
+}
+
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+* Tabbed Document Viewer script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Please keep this notice intact
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+var selectedtablink=""
+var tcischecked=false
+
+function handlelink(aobject){
+selectedtablink=aobject.href
+tcischecked=(document.tabcontrol && document.tabcontrol.tabcheck.checked)? true : false
+if (document.getElementById && !tcischecked){
+var tabobj=document.getElementById("tablist")
+var tabobjlinks=tabobj.getElementsByTagName("A")
+for (i=0; i<tabobjlinks.length; i++)
+tabobjlinks[i].className=""
+aobject.className="current"
+document.getElementById("tabiframe").src=selectedtablink
+return false
+}
+else
+return true
+}
+
+function handleview(){
+tcischecked=document.tabcontrol.tabcheck.checked
+if (document.getElementById && tcischecked){
+if (selectedtablink!="")
+window.location=selectedtablink
+}
+}
+
+</script>
+<title>Najeeb Home</title></head>
+<body>
+<ul id="tablist">
+<li><a class="current" href="YOU.html" onClick="return handlelink(this)">N-Tube</a></li>
+<li><a href="WALL1.html" onClick="return handlelink(this)">N-Wall</a></li>
+<li><a href="M3U.html" onClick="return handlelink(this)">N-M3U</a></li>
+<li><a href="TEXT.html" onClick="return handlelink(this)">CLI-SCRIPTS</a></li>
+<li><a href="REDUCE.html" onClick="return handlelink(this)">REDUCE-IMAGE-SIZE</a></li>
+</ul>
+<iframe id="tabiframe" src="HOME.html" width="98%" height="600px"></iframe>
+
+<form name="tabcontrol" style="margin-top:0">
+<input name="tabcheck" type="checkbox" onClick="handleview()"> Open tab links in browser window instead.
+</form>
+</body>
+</html>

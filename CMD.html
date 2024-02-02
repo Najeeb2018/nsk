@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html>
+<head><Title>Najeeb CMD All Commands</Title>
+<style>
+textarea {
+  resize: none;
+  width: 950px;
+  height: 650px;
+ font-size: 18px;
+}
+</style>
+</head>
+<body>
+<Center>
+<textarea id="w3review" name="w3review" rows="26" cols="50">
+[Najeeb All Batch CMD Commands]
+HELP /?
+TYPE BOOKS\CMD.txt
+compmgmt.msc
+diskmgmt.msc
+devmgmt.msc
+Control Panel
+charmap
+notepad.exe
+calc.exe
+winver.exe
+vlc.exe
+mspaint.exe
+notepad.exe
+write.exe
+calc.exe
+winver.exe
+TOOLS\PDF.exe
+TOOLS\Everything.exe
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+ARP -a    ;Net Commands
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+ATTRIB [+R | -R] [+A | -A] [+S | -S] [+H | -H] [+I | -I] [drive:][path][file name] [/S [/D] [/L]]
+Viewing File Attributes:
+Attrib filename.txt
+Setting Read-Only Attribute:
+Attrib +R filename.txt
+Removing Read-Only Attribute:
+Attrib -R filename.txt
+Setting Hidden Attribute:
+Attrib +H filename.txt
+Removing Hidden Attribute:
+Attrib -H filename.txt
+Setting System Attribute:
+Attrib +S filename.txt
+Removing System Attribute:
+Attrib -S filename.txt
+Setting Archive Attribute:
+Attrib +A filename.txt
+Removing Archive Attribute:
+Attrib -A filename.txt
+Apply Attribute Changes to All Files in a Directory:
+Attrib +R +H *.txt
+;***********************;
+ATTRIB +S +H +R 
+ATTRIB +H *.ext
+ATTRIB /S -H *.ext
+ATTRIB -S -H -R 
+ATTRIB +S +H
+ATTRIB -S -H
+ATTRIB +S +H "E:\*" /S /D
+ATTRIB +S +H +R /s /d G:\*.*
+ATTRIB -S -H -R /s /d G:\*.*
+ATTRIB -S -H -A -R /s /d G:\*.*
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+ASSOC      ;Type ASSOC without parameters to display the current file associations.
+Displays a file association of each of the file extensions on the computer.
+ASSOC .txt
+Displays the file extension for a .txt file as shown below.
+.txt=txtfile
+Changing File Association:
+ASSOC .txt=txtfile
+Removing File Association:
+ASSOC .txt=
+Creating a New File Association:This command creates a new association for the .ext file extension with the "customFileType."
+ASSOC .ext=customFileType
+Viewing All File Associations:
+FTYPE
+Viewing Association for a Specific File Type (Detailed):
+FTYPE txtfile
+Changing the Command for a File Type:
+FTYPE txtfile=notepad.exe
+Removing File Type Association:
+FTYPE txtfile=
+This command removes the association for the "txtfile" file type.
+Resetting All File Associations to Default:
+FTYPE *=
+This command removes all file type associations, resetting them to the default values.
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+Browstat       ;Net Commands
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+CALL     ;Call one batch program from another Open(Run)?
+CALL ATTRIB +S +H +R
+CALL File.bat
+CALL command_with_parameters.exe param1 param2
+CALL :functionName parameter1 parameter2
+CALL :labelName
+CALL anotherScript.bat arg1 arg2
+CALL powershell.exe -File script.ps1
+CALL python script.py
+CALL start "" "https://www.example.com"
+CALL echo %USERNAME%
+CALL echo Hello, World!
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+CD hope
+CD\ or CD /
+CD ~
+Change to the Previous Directory:
+CD -
+Move Up One Directory Level:
+CD..    BACK
+Use Relative Path:
+CD Subdirectory
+Use Wildcards in Directory Names:
+CD C:\Program*
+Change to a Specific Directory:
+CD C:\Users\[your_user_name]\Desktop
+C:\Users\[your_user_name]\Documents
+Change to a Directory on Another Drive:
+CD /D D:\Example\Directory
+CD /D %userprofile%\Desktop
+CD /D C:\Windows
+C: D: E: F: G: H: ............  
+Move to the Root Directory of the Current Drive:
+CD\    Root Dir C:\
+CD
+CD..
+CD..\..
+Move to the User's Home Directory:
+CD %HOMEPATH%
+Move to the System Root Directory:
+CD %SystemRoot%
+CD %USERPROFILE%
+CD /d E:\Pics
+CD\windows\system32
+Navigate to a Network Share:
+CD \\Server\Share
+C:\CMDER
+C:\Program Files
+C:\Windows
+C:\Users\Najeeb\AppData\Local\Temp
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+CHKDSK
+Check Disk on the C: Drive:
+CHKDSK C:
+Check Disk with Repair on a Drive:
+chkdsk /f D:
+Check Disk on System Drive during Next Restart:
+chkdsk /f /r
+Check External Drive and Fix Errors:
+chkdsk /f /x E:
+Check Disk with Extended Tests:
+chkdsk /r /x F:
+Check Disk with Log Output:
+chkdsk C: > chkdsklog.txt
+Check Disk and Skip Autochk at Boot:
+chkntfs /x C:
+chkdsk C:
+This pair of commands skips the automatic disk check at the next system boot and manually initiates the chkdsk command.
+Display Help and Usage Information:
+chkdsk /?
+This command displays help and usage information for the chkdsk command, providing a list of available options.
+;-----------------------------------------------;
+CHKDSK /f      ;Fixes errors on the disk.
+Disable Check Disk "chkdsk" That Runs Every Time Windows Starts
+fsutil dirty query c: (This queries the drive and may say its dirty)
+scanning drive C: type: chkntfs /x c:
+If you have a 2nd drive, say C: and f: Then your need to type
+CHKNTFS /x c: d: e: f: g: h:
+once done reboot your system.
+CHKNTFS /d   ;Restores the machine to the default behavior; all drives are checked at boot time and chkdsk is run on those that are dirty.
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+CIPHER   ;Encrypt or Decrypt files/folders
+CIPHER
+CIPHER /E hope
+CIPHER /D hope
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+CLEANMGR   ;Automated cleanup of Temp files, recycle bin
+CLEANMGR
+;-------------------------------------------;
+CLIP     ;Copy STDIN to the Windows clipboard
+CLIP
+CLIP DIR /S /B >> LIST.txt
+;-------------------------------------------;
+CLS      ;Clear the screen?
+CLS
+;-------------------------------------------;
+CMD      ;Start a new CMD shell
+CMD
+CMDKEY   ;Manage stored usernames/passwords
+CMDKEY
+;-------------------------------------------;
+COLOR    ;Change colors of the CMD window?
+0 = Black ; 1 = Blue ; 2 = Green ; 3 = Aqua ; 4 = Red
+5 = Purple ; 6 = Yellow ; 7 = White ; 8 = Gray ; 9 = Light Blue
+A = Light Green ; B = Light Aqua ; C = Light Red 
+D = Light Purple ; E = Light Yellow ; F = Bright White
+COLOR 0A
+;-------------------------------------------;
+COMMAND | find /c /v ""
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+Copy a File to Another Location:
+COPY file.txt C:\Destination\
+This command copies the "file.txt" from the current location to the "C:\Destination" directory.
+Copy Multiple Files to Another Location:
+COPY *.txt D:\Backup\
+This command copies all files with the ".txt" extension from the current location to the "D:\Backup" directory.
+Copy a File and Rename it in the Destination:
+COPY original.txt C:\Destination\renamed.txt
+This command copies "original.txt" to "C:\Destination" and renames it to "renamed.txt" in the destination.
+Copy Files and Subdirectories Recursively:
+COPY /s source\*.* destination\
+This command copies all files and subdirectories from the "source" directory to the "destination" directory, including subdirectories.
+Copy Files and Prompt Before Overwriting:
+COPY /-y file.txt C:\Destination\
+This command copies "file.txt" to "C:\Destination", but it prompts for confirmation before overwriting an existing file.
+Copy Files and Include Hidden and System Files:
+COPY /h /s source\*.* destination\
+This command copies all files, including hidden and system files, from the "source" directory to the "destination" directory.
+Copy Files and Retain Source Directory Structure:
+XCOPY source\*.* destination\ /e
+This command copies all files from the "source" directory to the "destination" directory while retaining the source directory structure.
+Copy Files and Continue on Error:
+COPY file.txt C:\Destination\ || echo Error occurred
+This command copies "file.txt" to "C:\Destination" and displays an error message if the copy operation fails.
+Copy Files and Exclude Certain Files:
+ROBOCOPY source\ destination\ /XF file1.txt file2.txt
+This uses the Robocopy command to copy files from "source" to "destination" while excluding specific files.
+Copy Files and Preserve Timestamps:
+ROBOCOPY source\ destination\ /COPY:DAT
+;-------------------------------------------;
+COPY     ;Copy one or more files to another location?
+COPY *.txt Combined.txt
+COPY *.txt C:\
+COPY *.txt D:\
+COPY *.* D:
+COPY Y:\install\j93n.exe Y:\more\m1284.msi
+COPY Z:\Software\program.iso C:\Users\Jon\Downloads\Programs\
+COPY Only Certain File Types
+COPY /y /v C:\Users\Jon\Downloads\*.mp3 C:\Users\Jon\Music\DownloadedMusic\
+Merge Files Into One And Hide
+;-------------------------------------------;
+COPY Z:\file1.txt+Z:\file2.txt+Z:\file3.txt Z:\combined.txt
+COPY /b DATA\PIC.jpg + File.rar DATA\PICNEW.jpg
+COPY /b DATA\P.jpg + PIC.rar DATA\PICR.jpg
+COPY myfile1.txt+myfile2.txt
+COPY /b Pic.jpg+Text.txt NewPic.jpg
+COPY /b PIC.jpg + File.rar PICNEW.jpg
+COPY Files to a New Folder
+;--------------------------------------;
+XCOPY C:\Files E:\Files /i
+XCOPY Backup Script
+XCOPY "C:\Important Files" D:\Backup /c /d /e /h /i /k /q /r /s /x /y
+COPY Files and Folders Over the Network
+XCOPY C:\Videos "\\SERVER\Media Backup" /f /j /s /w /z
+Duplicate Folder Structure
+;------------------------------------;
+XCOPY C:\Client032 C:\Client033 /t /e
+XCOPY /y "*.*" D:\|DEL "*.rar"
+XCOPY D:\file.pdf %HOMEPATH%\Documents\
+XCOPY /y "*.*" DATA\
+XCOPY *.shn *.wav
+;------------------------------------;
+ROBOCOPY  ;Robust File and Folder Copy
+ROBOCOPY C:\hope C:\hope2 *.txt
+ROBOCOPY C:\hope C:\hope2
+ROBOCOPY C:\hope C:\hope2 /e
+ROBOCOPY C:\hope C:\hope2 /MIR
+ROBOCOPY \\computer\hope C:\hope2
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+DATE     ;Display or set the date?
+DATE
+START "C:\Users\%Username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+IF "%DATE%" == "Sat 12/16/2023" start "" "C:\Users\Najeeb\Desktop\B.jpg"
+IF "%DATE%" == "Thu 11/02/2023" CALL RD /S /Q C:\Users\Username\Desktop\B\D
+IF "%DATE%" == "Thu 11/02/2023" CALL DEL /S /Q C:\Users\Username\Desktop\B\B.txt
+DEFRAG   ;Defragment hard drive
+DEFRAG [volume] [/O] [/V] [/H] [/M] [/U] [/Ox] [/B] [/X]
+    /O: This optimizes the use of available space on the specified volumes.
+    /V: This displays the complete analysis and defragmentation reports.
+    /H: This performs the operation at normal priority on the selected volumes.
+    /M: This runs the operation on all volumes.
+    /U: This displays the progress of the operation.
+    /Ox: This performs the optimization for the specified volume only.
+    /B: This performs the analysis on boot files as well.
+    /X: This forces the volume to dismount first if necessary.
+;------------------------------------------------;
+Defragment a specific drive (e.g., C:):
+DEFRAG C: /O
+Defragment all volumes:
+DEFRAG /C /O
+Display detailed information during the defragmentation process:
+DEFRAG C: /O /V
+Defragment all volumes and display progress:
+DEFRAG /C /O /U
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+Delete a specific file:
+;DEL C:\path\to\file.txt
+Delete all files in a specific directory:
+;DEL C:\path\to\directory\*.*
+Delete all files with a specific extension in a directory:
+;DEL C:\path\to\directory\*.txt
+Delete all files in the current directory:
+;DEL *.*
+Delete all files in a directory and its subdirectories:
+;DEL /s C:\path\to\directory\*.*
+Delete all files in a directory without confirmation (use with caution):
+;DEL /q C:\path\to\directory\*.*
+;*******************************;
+;DEL      ;Delete one or more files?
+;DEL [drive:][path]file name
+;DELETE [drive:][path]file name
+;DEL test.tmp   ;current directory, if the file exists.
+;DEL C:\windows\test.tmp    ;Windows directory if it exists.
+;DEL C:\windows\temp\*.*  
+;DEL C:\windows\temp\?est.tmp
+;Delete Every Archived File
+;-----------------------------------;
+;DEL "*.rar"
+;DEL /F *.ext
+;DEL /S /Q "*.*"
+;DEL /a:a *.*
+;Delete All EXE Files
+;DEL C:\Users\Tim\Downloads\*.exe
+;Delete By Attribute and Extension
+;DEL /q /a:r C:\Users\Tim\Documents\*.docx
+;Delete Files From Subfolders
+;DEL /s C:\Users\Tim\Documents\Adobe\*.*
+;DEL /F *.ext
+;DEL J:\*.* /f /s /q
+;DEL /S /Q "*.*"
+;DEL %WINDIR%\*.log /a /s /q /f
+;RMDIR [drive:]path
+;RD [drive:]path
+;-----------------------------------;
+;RD       ;Delete folder(s)?
+;RMDIR C:\test
+;RMDIR C:\test /s
+;RD/s/q J:\
+;DELPROF  ;Delete user profiles
+;DELTREE  ;Delete a folder and all subfolders
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;   
+DIR      ;Display a list of files and folders?
+DIR *.exe
+DIR *.txt *.doc
+DIR /a
+DIR /p
+DIR /w
+DIR /s /w /p
+DIR /o:n
+DIR /b /s [Directory or Filename]
+DIR /a:d    ;Lists only directories.
+DIR /a:r     ;List only files with the read-only attribute.
+DIR /S       ;Directories in the directory, and in any Subdirectories
+DIR /B *.EXT
+DIR /s /w /p "C:\Program Files"
+DIR /s /q /a:sh /p C:\Windows
+DIR c:\*.csv /s /b > c:\users\tim\desktop\csvfiles.txt
+DIR /W /B >> LIST.EXT
+es.exe [options] [search text]
+APP\es.exe -a G:\*.jpg >> List.txt
+APP\es.exe -r Najeeb | Clip
+DIR C:\"Program Files" >> %COMPUTERNAME%-IS.txt
+DIR /S /B /A  "C:\" >> %COMPUTERNAME%-LISTC.txt
+DIR /S /B /A  "D:\" >> %COMPUTERNAME%-LISTD.txt
+DIR /S /B /A  "E:\" >> %COMPUTERNAME%-LISTE.txt
+DIR /S /B /A  "F:\" >> %COMPUTERNAME%-LISTF.txt
+DIR /S /B /A  "G:\" >> %COMPUTERNAME%-LISTG.txt
+DIR /S /B /A  "H:\" >> %COMPUTERNAME%-LISTH.txt
+DIR /S /B /A  "I:\" >> %COMPUTERNAME%-LISTI.txt
+DIR /S /B /A  "J:\" >> %COMPUTERNAME%-LISTJ.txt
+DIR /S /B /A  "K:\" >> %COMPUTERNAME%-LISTK.txt
+DIR /A:H /S /B >> LIST.txt
+CMD /R DIR /B > List.txt
+DIR \*.mp3 /s /b > filename.txt
+DIR /B > List.txt
+DIR > myfile.txt
+DIR /s /a:hs /q C:\Windows > myfile.txt
+DIR \ /s | find "i" | more
+DIR \ /s /b | find /I "searchstring"
+DIR \ /s /b | find /I "mike"
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+DISKPART   ;Disk Administration
+DISKPART [/s script] HELP[/?]
+DISKPART
+LIST DISK
+LIST PARTITION
+Select disk
+SELECT PARTITION 1
+DETAIL PARTITION
+;-------------------------------------------
+System All Driver List Show
+Driverquery
+Driverquery > List.txt
+;-------------------------------------------
+DISKPART
+list disk
+select disk 1
+list partition
+select partition 1
+create partition primary size=10000
+delete partition
+format fs=ntfs quick
+assign letter=D
+extend
+shrink desired=2048
+convert gpt
+convert mbr
+clean
+rescan
+exit
+;***************************************
+BCDEDIT
+bcdedit /copy {current} /d "New Entry Name"
+bcdedit /default {identifier}
+bcdedit /timeout 10
+bcdedit /delete {identifier}
+bcdedit /set {identifier} description "New Name"
+bcdedit /displayorder {identifier1} {identifier2} ...
+bcdedit /safeboot {minimal}
+bcdedit /safeboot
+bcdedit /set {identifier} bootmenupolicy Legacy
+bcdedit /set {identifier} device partition=C:
+bcdedit /set {identifier} osdevice partition=C:
+bcdedit /set {current} hypervisorlaunchtype auto
+bcdedit /copy {current} /d "RamDisk" /create /application osloader
+bcdedit /set {identifier} device ramdisk=[C:]\path\to\ramdisk.img
+bcdedit /set {identifier} path \Windows\System32\boot\winload.exe
+bcdedit /set {identifier} systemroot \Windows
+bcdedit /set {current} hypervisorlaunchtype off
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+DOSKEY    ;Edit command line, recall commands, and create macros
+DOSKEY /history
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+ECHO     ;Display message on screen?
+ECHO [ON | OFF]  ;@ECHO OFF
+ECHO [message]
+ECHO this is a test > test.bat
+ECHO this is an example >> test.txt
+ECHO Hide Text Here >> PIC.jpg
+ECHO Hide Text Here >> DATA\PIC.jpg
+ECHO.
+ECHO %%random%% %%random%% %%random%% %%random%%%%random%% %%random%% %%random%% %%random%% %%random%% %%random%%
+ECHO %COMSPEC%
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+ENDLOCAL   ;End localisation of environment changes in a batch file?
+ERASE        ;Delete one or more files?
+ERASE C:\windows\*.tmp
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;   
+EXIT     ;Quit the current script/routine and set an errorlevel?
+EXPAND   ;Uncompress files
+Windows Vista and later syntax
+;------------------------------------------;
+EXPAND [-R] Source Destination
+EXPAND -R Source [Destination]
+EXPAND -I Source [Destination]
+EXPAND -D Source.cab [-F:Files]
+EXPAND Source.cab -F:Files Destination
+EXTRACT  ;Uncompress CAB files
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FC       ;Compare two files
+FC autoexec.bat config.sys
+FC C:\autoexec.bat C:\config.sys /b
+FC "C:\Program Files (x86)\A.txt" "C:\Program Files (x86)\B.txt"
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FINDSTR /N /B /I "SearchWord" BOOKS\C.txt  ; (/N /B /I /S /P /L /E /X /V /M /O);(/C /R /G /F /d /A)
+FINDSTR /N /B /I "SearchWord" BOOKS\C.txt
+FINDSTR /L /C:"quick brown" BOOKS\*.txt
+FINDSTR /L /C:"^brown" BOOKS\*.txt
+FIND /N /I "-ss" BOOKS\FFMPEG.txt
+FIND /N /I "SearchWord" BOOKS\C.txt              ; (/N /I  /C /V)	
+FIND     ;Search for a text string in a file
+FIND /c "REM" c:\autoexec.bat
+FIND /v /c "&*fake&*" programs.txt
+FIND "hope" *.txt
+FIND /I "[COMMANDS]" %windir%\CMD.fm|
+FIND "WORD" *.txt
+FIND /V /C "" D:\Samle.txt
+FIND /I "WORD" *Files*.txt
+FIND /N /I "TEXT" *.txt
+FIND " /V /C
+Search for a String in a File:  Searches for the specified string in a file.
+FINDSTR "search_string" filename.txt
+Case-Insensitive Search: Performs a case-insensitive search.
+FINDSTR /i "search_string" filename.txt
+Search for Multiple Strings: Searches for multiple strings in a file.
+FINDSTR "string1 string2" filename.txt
+Search for Whole Words: Matches whole words, not substrings.
+FINDSTR /w "word" filename.txt
+Display Line Numbers:Displays line numbers along with the matched lines.
+FINDSTR /n "search_string" filename.txt
+Recursive Search in Subdirectories: Searches for the string in all files in the specified directory and its subdirectories.
+FINDSTR /s "search_string" C:\Path\To\Directory\*.txt
+Search for Inverted Strings:Displays lines that do not contain the specified string.
+FINDSTR /v "exclude_string" filename.txt
+Regular Expression Search: Uses regular expressions for more advanced pattern matching.
+FINDSTR /r "pattern" filename.txt
+Search for Multiple Patterns (OR condition): Finds lines that contain either of the specified patterns.
+FINDSTR "pattern1" filename.txt | findstr "pattern2"
+Search for Multiple Patterns (AND condition): Finds lines that contain both specified patterns.
+FINDSTR "pattern1.*pattern2" filename.txt
+Redirect Output to a File: Saves the output to a file.
+FINDSTR "search_string" filename.txt > output.txt
+Search for Whole Words Only (Exact Match): Matches whole words only, not substrings.
+FINDSTR /x "exact_word" filename.txt
+;-------------------------------------;
+FINDSTR   ;Search for strings in files
+FINDSTR "computer help" myfile.txt
+FINDSTR /s "computer help" *.txt
+FINDSTR /x /c:"computer help" *.txt
+FINDSTR /n /i /c:"computer help" *
+FINDSTR "WORD1 WORD2 WORD3...." Sample.txt
+FINDSTR "APPLE BALL cat...." Sample.txt
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FOR /F   ;Loop command: against a set of files?
+FOR /F   ;Loop command: against the results of another command?
+FOR       ;Loop command: all options Files, Directory, List?
+FOR /f "delims=: tokens=1*" %A in ('dir /b *.jpg^|findstr /n "^"') do @ren "%B" "%A%~xB"
+FOR /R %x in (*.txt) do ren "%x" *.ini
+FOR %f in (*.txt) Do Type %f  >> Combined.txt
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FORMAT      ;Format a disk
+FORMAT a:           ;floppy disk
+FORMAT a: /q       ; Format floppy disk quickly
+FORMAT C:   ; D:  ; E: ......;Format a disk
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FREEDISK  ;Check free disk space (in bytes)
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FSUTIL        ;File and Volume utilities
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FTP          ;File Transfer Protocol
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-; 
+FTYPE      ;File extension file type associations?
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+GETMAC   ;Display the Media Access Control (MAC) address
+GLOBAL     ;Display membership of global groups
+GOTO        ;Direct a batch program to jump to a labelled line?
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+HELP     ;Online Help   (-H ; --H ; -Help ; --Help ; /? ; ?)
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+IF       ;Conditionally perform a command? 
+IF "%DATE%" == "Sat 12/16/2023" start "" "C:\Users\Najeeb\Desktop\B.jpg"
+IF "%DATE%" == "Thu 11/02/2023" CALL RD /S /Q C:\Users\Username\Desktop\B\D
+IF "%DATE%" == "Thu 11/02/2023" CALL DEL /S /Q C:\Users\Username\Desktop\B\B.txt
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+IPCONFIG     ;Configure IP
+IPCONFIG /all   ;Display full configuration information.
+IPCONFIG /all |more
+IPCONFIG /displaydns    ;Display the contents of the DNS Resolver cache.
+IPCONFIG /flushdns  ;Deletes all DNS entries.
+IPCONFIG /release  ;Release the IPv4 address for the specified adapter.
+IPCONFIG /release6   ;Release the IPv6 address
+IPCONFIG /renew     ;Renew the IPv4 address for the specified adapter.
+IPCONFIG /renew6    ;Renew the IPv6 address
+IPCONFIG /showclassid   ;Displays all the DHCP class IDs allowed for adapter.
+IPCONFIG /setclassid    ;Modifies the DHCP class id.
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+KILL     ;Remove a program from memory
+TASKKILL /f /im notepad.exe
+TASKKILL /pid 9764
+TASKKILL -im explorer.exe /f >nul&start explorer
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+LABEL    ;Edit a disk label
+LOCAL    ;Display membership of local groups
+LOGEVENT     ;Write text to the event viewer
+LOGMAN     ;Manage Performance Monitor
+LOGOFF     ;Log a user off
+LOGTIME    ;Log the date and time in a file
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+MAPISEND    ;Send email from the command line
+MEM       ;Display memory usage
+MKLINK   ;Create a symbolic link (linkd)
+MODE     ;Configure a system device
+MSG      Send a message
+MSINFO32   ;System Information
+MSTSC    ;Terminal Server Connection (Remote Desktop Protocol)
+MORE     ;Display output, one screen at a time
+MKDIR [drive:]path
+MD [drive:]path
+MD "Najeeb"
+MD Najeeb
+MD user1 user2 user3
+MD "my example directory"
+MD c:\test
+MD %Random%
+MD c:\test1\test2
+MKDIR "computer hope"
+MKDIR \a\b\c\d      ;For example, assume \a does not exist then:
+MKDIR \A\B\C|MD ..\example
+MKDIR \a
+CHDIR \a
+MKDIR b
+CHDIR b
+MKDIR c
+CHDIR c
+MKDIR d
+MD %%random%%
+MOVE     ;Move files from one folder to another?  
+To move one or more files:
+MOVE [/Y | /-Y] [drive:][path]file name1[,...] destination
+To rename a directory:
+MOVE [/Y | /-Y] [drive:][path]dirname1 dirname2 
+MOVE stats.doc c:\statistics
+MOVE stats.doc, morestats.doc c:\statistics
+MOVE example.doc d:\
+MOVE *.doc c:\statistics
+MOVE /y "*.*" DATA\
+MOVE /y "E:\*.*" D:\
+MOVE c:\windows\temp\*.* c:\temp
+MOVE "computer hope" example
+MOVE c:\example.txt h:
+MV       ;Copy in-use files
+MV hope.txt hope.html
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+NET      ;Manage network resources
+NET [ accounts | computer | config | continue | file | group | help | helpmsg |
+    localgroup | pause | session | share | start | statistics | stop | time |
+    use | user | view ]
+NET ACCOUNTS
+NET use z: \\computer\folder
+NET send mrhope "There is hope!"
+NET send * "Hello everyone!"
+NET config workstation
+NET view \\hope
+NET localgroup
+NET share
+NET share hope=c:\hope\files
+NET view
+NET view /domain
+NET view /domain:otherdomain
+NET user %USERNAME% /domain
+NET user /domain
+NET accounts
+NET accounts /domain
+NET localgroup administrators
+NET group "Domain Admins" /domain
+NET group "Enterprise Admins" /domain
+NET group "Domain Controllers" r/domain
+NET share
+NET session | find / "\\"
+;--------------------------------------------------;
+NETSH    ;Configure Network Interfaces, Windows Firewall & Remote access
+NETSH
+NETSH dump
+NETSH interface ip show config
+NETSH diag show all
+NETSH wlprofiles show profiles
+NETSH wlan export profile folder=. key=clear
+NETSH wlan set hostednetwork ssid=<ssid> key=<passphrase> keyUsage=persistent|temporary
+NETSH wlan set hostednetwork mode=[allow|disallow] 
+NETSH w`lan [start|stop] hostednetwork
+NETSH firewall set opmode disable
+NETSH firewall set opmode enable
+;--------------------------------------------------;
+NETSVC   ;Command-line Service Controller
+;--------------------------------------------------;
+NBTSTAT   ;Display networking statistics (NetBIOS over TCP/IP)
+NBTSTAT [ [-a RemoteName] [-A IpAddress] [-c] [-n] [-r] [-R] [-RR] [-s] [-S] [interval] ]
+NBTSTAT -A 204.224.150.3
+;--------------------------------------------------;
+NETSTAT   ;Display networking statistics (TCP/IP)
+NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-x] [-t] [interval]
+NETSTAT -a
+NETSTAT -n
+NETSTAT -an
+NETSTAT -nabo
+NETSTAT -r
+NETSTAT -na | findstr :445
+NETSTAT -nao | findstr LISTENING
+NETSTAT -anob | findstr "services, process or port"
+NETSTAT diag show all
+NETSTAT 5
+;--------------------------------------------------;
+NOW       ;Display the current Date and Time 
+;--------------------------------------------------;
+NSLOOKUP     ;Name server lookup
+NSLOOKUP
+NSLOOKUP 204.228.150.3
+NSLOOKUP http://www.google.com
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+PATH     ;Display or set a search path for executable files?
+;--------------------------------------------------;
+PAUSE    ;Suspend processing of a batch file and display a message?
+;--------------------------------------------------;
+PING     ;Test a network connection
+PING localhost
+PING computerhope.com
+PING 216.58.216.164
+PING <address> -t
+PING <hostname> -4   ;[192.168.1.7]
+;--------------------------------------------------;
+POWERCFG   ;Configure power settings
+;--------------------------------------------------;
+PRINT     ;Print a text file
+PRINT c:\file.txt /c /d:lpt1
+;--------------------------------------------------;
+PROMPT   ;Change the command prompt?
+;--------------------------------------------------;
+PUSHD    ;Save and then change the current directory?
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+RECOVER  ;Recover a damaged file from a defective disk
+;--------------------------------------------------;
+REG      ;Registry: Read, Set, Export, Delete keys and values
+REG query [\\TargetIPaddr\] [RegDomain]\[ Key ] /v [Valuename!] (you can to add /s for recurse all values )
+REG save HKLM\Security security.hive  (Save security hive to a file)
+REG save HKLM\System system.hive (Save system hive to a file)
+REG save HKLM\SAM sam.hive (Save sam to a file)=
+REG add [\\TargetIPaddr\] [RegDomain][ \Key ]
+REG export [RegDomain]\[Key] [FileName]
+REG import [FileName ]
+;--------------------------------------------------;
+REGEDIT  ;Import or export registry settings
+;--------------------------------------------------;
+REM      ;Record comments (remarks) in a batch file?
+REM Deleting Logs
+;--------------------------------------------------;
+FOR /f "delims=: tokens=1*" %A in ('dir /b *.jpg^|findstr /n "^"') do @ren "%B" "%A%~xB"
+FOR /R %x in (*.txt) do ren "%x" *.ini
+REN      ;Rename a file or files?
+RENAME [drive:][path][directory name1 | file name1] [directory name2 | file name2]
+REN [drive:][path][directory name1 | file name1] [directory name2 | file name2]
+RENAME c:\computer hope
+RENAME *.txt *.bak
+RENAME * 1_*   ;1_. The asterisk (*) current directory are renamed to have "1_" as the first two characters.
+RENAME "computer hope.txt" "example file.txt"
+RENAME *.shn *.wav
+REN *.* *.EXT 
+REN *.EXT *.EXT
+REN *.DOC *.TXT
+REN *.JPEG *.TXT
+REN *.LNK *.TXT
+REN *.AVI *.TXT
+REN *.MPEG *.TXT
+REN *.COM *.TXT
+REN *.BAT *.TXT
+;--------------------------------------------------;
+REPLACE  ;Replace or update one file with another
+;--------------------------------------------------;
+Reset Session  Delete a Remote Desktop Session
+;--------------------------------------------------;
+ROUTE    ;Manipulate network routing tables
+ROUTE [-f] [-p] [-4|-6] command [destination] [MASK netmask] [gateway] [METRIC metric] [IF interface]
+ROUTE PRINT
+;--------------------------------------------------;
+RUN      ;Start | RUN commands
+;--------------------------------------------------;
+RUNAS    ;Execute a program under a different user account
+RUNAS /noprofile /user:mymachine\administrator cmd
+RUNAS /profile /env /user:mydomain\admin "mmc %windir%\system32\dsa.msc"
+RUNAS /env /user:user@domain.microsoft.com "notepad \"my file.txt\""
+;--------------------------------------------------;
+RUNDLL32   ;Run a DLL command (add/remove print connections)
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+SC       Service Control
+SCHTASKS Schedule a command to run at a specific time
+SCLIST   Display Services
+SET      Display, set, or remove session environment variables?
+SETLOCAL Control the visibility of environment variables?
+SETX     Set environment variables
+SFC      System File Checker 
+SHARE    List or edit a file share or print share
+ShellRunAs Run a command under a different user account
+SHIFT    Shift the position of batch file parameters?
+SHORTCUT Create a windows shortcut (.LNK file)
+SHOWGRPS List the Workgroups a user has joined
+;--------------------------------------------------;
+SHUTDOWN Shutdown the computer
+SHUTDOWN -s -t 100 c “Installing Updates”
+;--------------------------------------------------;
+SLEEP    Wait for x seconds
+SOON     Schedule a command to run in the near future
+SORT     Sort input
+;--------------------------------------------------;
+START    Start a program, command or batch file?
+START Mspaint.exe & Exit
+START winword
+START mspaint
+START notepad
+START write
+START cmd
+START explorer
+START control
+START calc
+START shutdown -s -f -t 300 -c "Should have asked for permission...SHUTDOWN INITIATED"
+START D:\DATA
+START http://www.google.com/
+START http://www.youtube.com/
+START C:\NSK\Soft\Everything.exe
+START C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+;--------------------------------------------------;
+Create a virtual drive:
+SUBST X: C:\Example\Path
+This command associates the virtual drive letter X: with the folder C:\Example\Path. 
+You can replace X: with any available drive letter.
+List all virtual drives:
+SUBST  ;Associate a path with a drive letter
+This command, when used without any parameters, lists all the virtual drives that are currently defined.
+Remove a virtual drive:
+SUBST X: /D
+This command removes the virtual drive associated with the drive letter X:.Use variables in the path:
+SET MyPath=C:\Example\Path
+SUBST X: %MyPath%
+This example uses a variable (MyPath) to store the folder path and then associates the virtual drive X: with that path.
+Create a virtual drive in a specific session (temporary):
+ SUBST X: C:\Example\Path /D
+This creates a virtual drive X: for the current session. Once you close the Command Prompt window, 
+the virtual drive will be removed.Remember to replace C:\Example\Path with the actual path you want to use and 
+choose an available drive letter. Also, note that virtual drives created with SUBST are not persistent across system reboots.
+ If you want a persistent solution, you might want to look into using the 
+HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\DOS
+@SUBST Z: "G:\F"    ;(VIRTUAL-FOLDER-DRIVE-Z)
+@SUBST Z: /D         ; (UN-VIRTUAL-FOLDER-DRIVE-Z)
+;--------------------------------------------------;
+SYSTEMINFO List system configuration
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+TAKEOWN  Take ownership of a file
+;--------------------------------------------------;
+TASKLIST List running applications and services
+TASKLIST > List.txt
+TASKKILL Remove a running process from memory
+TASKKILL -im explorer.exe /f >nul&start explorer
+TASKKILL /pid 1332 
+;--------------------------------------------------;
+TIME     Display or set the system time?
+TIMEOUT  Delay processing of a batch file
+;--------------------------------------------------;
+TITLE      ;Set the window title for a CMD.EXE session?
+TITLE         ~~~***NAJEEB SHAH KHAN BEST COMMANDS***~~~
+;--------------------------------------------------;
+TLIST    Task list with full path
+TOUCH    Change file timestamps    
+TRACERT  Trace route to a remote host
+;--------------------------------------------------;
+TREE     Graphical display of folder structure
+TREE C:\ /f /a > C:\output_of_tree.txt
+;--------------------------------------------------;
+TYPE     ;Display the contents of a text file?
+TYPE D:\Sample.txt 
+TYPE %WINDIR%\System32\drivers\etc\hosts
+How can I create an empty file at the command line
+TYPE NUL > %CD%\EmptyFile.txt
+TYPE *.txt > Combined.txt
+;--------------------------------------------------;
+Display Contents of a Text file:
+TYPE filename.txt
+Display Contents of Multiple Text Files:
+TYPE file1.txt file2.txt
+Concatenate and Display Contents of Multiple Text Files:
+TYPE file1.txt file2.txt > combined.txt
+Display Contents with Line Numbers:
+TYPE filename.txt | find /n /v ""
+Display Contents with More (Paging):
+TYPE filename.txt | more
+Display Contents and Redirect Output to Another File:
+TYPE filename.txt > newfile.txt
+Display Contents and Append to Another File:
+TYPE filename.txt >> existingfile.txt
+Display Contents and Use Colorized Output:
+TYPE filename.txt | color
+Display Contents of a Remote Text File (via FTP):
+TYPE ftp://username:password@ftpserver/path/to/file.txt
+Display Contents with ANSI Escape Codes (Color Codes):
+TYPE filename.txt | findstr /v /a:^
+Display Contents of a Binary File (Unsafe):
+TYPE binaryfile.bin
+Display Contents and Filter Lines by Keyword:
+TYPE filename.txt | find "keyword"
+Display Contents of a File and Pause:
+TYPE filename.txt | more
+Display Contents of a File with UTF-8 Encoding:
+TYPE filename.txt | more /e
+Display Contents and Interpret Control Characters
+TYPE filename.txt | more /c
+;--------------------------------------------------;
+TZUTIL /L  ;List Time Zone
+TZUTIL /G ;Current Time Zone
+TZUTIL /S "Pakistan Standard Time"
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+VER      Display version information?
+VERIFY   Verify that files have been saved?
+VOL      Display a disk label?
+VOl D:
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+Search for an executable in the current directory and PATH:
+WHERE executable_name
+Replace executable_name with the name of the executable file you're looking for.
+Search for a specific file type in the current directory and PATH:
+WHERE *.txt
+This example searches for all files with a .txt extension.
+Search for multiple executable files:
+WHERE command1 command2
+This command searches for the locations of multiple executable files (e.g., WHERE notepad.exe calc.exe).
+Search for executable with a specific extension:
+WHERE /R C:\ PathToSearch\*.exe
+This example uses the /R option to search recursively in the specified directory (C:\PathToSearch) for all executable files (*.exe).
+Display only the first match:
+WHERE /Q executable_name
+The /Q option is used to display only the first match.
+Display all matches (including non-executables):
+WHERE /Q /R C:\ PathToSearch\*
+The /Q option is used to display all matches, including non-executable files, in the specified directory.
+Search for a file with a specific extension case-insensitively:
+WHERE /I *.ExE
+The /I option makes the search case-insensitive.
+Display full path for each match:
+WHERE /F /R C:\ PathToSearch\executable_name
+;---------------------------------
+WHERE    ;Locate and display files in a directory tree
+WHERE /?
+WHERE myfilename1 myfile????.*
+WHERE $windir:*.*
+WHERE /R c:\windows *.exe *.dll *.bat
+WHERE /Q ??.???
+WHERE "c:\windows;c:\windows\system32:*.dll"
+WHERE /F /T *.dll
+;--------------------------------------------------;
+WEVTUTIL el  (list logs)
+WEVTUTIL cl <LogName> (Clear specific lowbadming)
+;--------------------------------------------------;
+WHOAMI   Output the current UserName and domain
+WINMSDP  Windows system report
+WINRM    Windows Remote Management
+WINRS    Windows Remote Shell
+;--------------------------------------------------;
+List all available aliases:
+WMIC /?
+Get information about the computer system:
+WMIC COMPUTERSYSTEM GET Caption,Manufacturer,Model,TotalPhysicalMemory
+List all installed programs:
+WMIC PRODUCT GET Name,Version
+Query the operating system information:
+WMIC OS GET Caption,Version,BuildNumber
+Get information about the processor:
+WMIC CPU GET Name,MaxClockSpeed
+List network adapter information:
+WMIC NIC GET AdapterType,MACAddress,NetConnectionID
+Check disk drive information:
+WMIC DISKDRIVE GET DeviceID,Model,Size
+Query running processes:
+WMIC PROCESS GET Caption,ProcessID,CommandLine
+Get installed software updates:
+WMIC QFE GET Caption,Description,HotFixID,InstalledOn
+Retrieve user account information:
+WMIC USERACCOUNT GET Name,FullName,Status
+WMIC service list brief
+WMIC process list brief
+WMIC startup list brief
+WMIC bios
+WMIC qfe qfe get hotfixid
+ (This gets patches IDs)
+WMIC startupwmic service
+WMIC process get caption,executablepath,commandline
+WMIC process call create "process_name" (executes a program)
+WMIC process where name="process_name" call terminate (terminates program)
+WMIC logicaldisk where drivetype=3 get name, freespace, systemname, filesystem, size, volumeserialnumber (hard drive information)
+WMIC useraccount (usernames, sid, and various security related goodies)
+WMIC useraccount get /ALL
+WMIC share get /ALL (you can use ? for gets help ! )
+WMIC startup list full (this can be a huge list!!!)
+WMIC /node:"hostname" bios get serialnumber (this can be great for finding warranty info about target)WE PRESENT YOU PORNHUB.COM
+WMIC product get name /value (this gets software names)
+WMIC product where name="XXX" call uninstall /nointeractive (this uninstalls software)
+;--------------------------------------------------;
+WUAUCLT  Windows Update
+compmgmt.msc
+diskmgmt.msc
+devmgmt.msc
+Control Panel
+C:\Windows\Prefetch
+"C:\Users\Najeeb\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+C:\Users\Najeeb\AppData\Local\Temp
+C:\Windows\Temp
+******************************************
+SUBST    ;Associate a path with a drive letter
+@SUBST Z: "G:\F"    ; (VIRTUAL-FOLDER-DRIVE-Z)
+@SUBST Z: /D          ; (UN-VIRTUAL-FOLDER-DRIVE-Z)
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-
+es.exe [options] [search text] ; Frist open Everything.exe use ES.exe
+APP\Everything.exe
+APP\es.exe -a G:\*.jpg >> List.txt
+APP\es.exe -r Najeeb | Clip
+winver.exe
+compmgmt.msc
+diskmgmt.msc
+devmgmt.msc
+Control Panel
+charmap
+ASSOC
+FTYPE
+DATE
+START "C:\Users\%Username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+IF "%DATE%" == "Sat 12/16/2023" start "" "C:\Users\Najeeb\Desktop\B.jpg"
+IF "%DATE%" == "Thu 11/02/2023" CALL RD /S /Q C:\Users\Username\Desktop\B\D
+IF "%DATE%" == "Thu 11/02/2023" CALL DEL /S /Q C:\Users\Username\Desktop\B\B.txt
+DISKPART
+list disk
+DOSKEY    
+DOSKEY /history
+FOR /f "delims=: tokens=1*" %A in ('dir /b *.jpg^|findstr /n "^"') do @ren "%B" "%A%~xB"
+FOR /R %x in (*.txt) do ren "%x" *.ini
+FOR %f in (*.txt) Do Type %f  >> Combined.txt
+;************************************************;
+FREEDISK
+FSUTIL        
+FTP
+MEM
+MSINFO32
+ROUTE
+SC       Service Control
+SCHTASKS Schedule a command to run at a specific time
+SCLIST   Display Services
+SET      Display, set, or remove session environment variables?
+SETLOCAL Control the visibility of environment variables?
+SETX     Set environment variables
+SFC      System File Checker 
+TZUTIL /L  ;List Time Zone
+TZUTIL /G ;Current Time Zone
+TZUTIL /S "Pakistan Standard Time"
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+VER      Display version information?
+VERIFY   Verify that files have been saved?
+VOL      Display a disk label?
+VOl D:  
+Driverquery
+Driverquery > List.txt
+::User Information
+whoami > %COMPUTERNAME%-IS.txt
+whoami /priv >> %COMPUTERNAME%-IS.txt
+echo %username% >> %COMPUTERNAME%-IS.txt
+net user >> %COMPUTERNAME%-IS.txt
+cmdkey /list >> %COMPUTERNAME%-IS.txt
+
+::System Information
+DIR /s /q /a:sh /p C:\Windows
+DIR /A:H /S /B >> LIST.txt
+DIR \*.mp3 /s /b > filename.txt
+DIR /s /a:hs /q C:\Windows > myfile.txt
+DIR \ /s | find "i" | more
+DIR \ /s /b | find /I "searchstring"
+DIR \ /s /b | find /I "mike"
+systeminfo >> %COMPUTERNAME%-IS.txt
+getmac >> %COMPUTERNAME%-IS.txt
+dir C:\ >> %COMPUTERNAME%-IS.txt
+dir E:\ >> %COMPUTERNAME%-IS.txt
+dir F:\ >> %COMPUTERNAME%-IS.txt
+dir C:\Users >> %COMPUTERNAME%-IS.txt
+dir C:\"Program Files" >> %COMPUTERNAME%-IS.txt
+dir /S /B /A  "C:\" >> %COMPUTERNAME%-LISTC.txt
+dir /S /B /A  "D:\" >> %COMPUTERNAME%-LISTD.txt
+dir /S /B /A  "E:\" >> %COMPUTERNAME%-LISTE.txt
+dir /S /B /A  "F:\" >> %COMPUTERNAME%-LISTF.txt
+dir /S /B /A  "G:\" >> %COMPUTERNAME%-LISTG.txt
+dir /S /B /A  "H:\" >> %COMPUTERNAME%-LISTH.txt
+dir /S /B /A  "I:\" >> %COMPUTERNAME%-LISTI.txt
+dir /S /B /A  "J:\" >> %COMPUTERNAME%-LISTJ.txt
+dir /S /B /A  "K:\" >> %COMPUTERNAME%-LISTK.txt
+dir C:\"Program Files (x86)" >> %COMPUTERNAME%-IS.txt
+tasklist >> %COMPUTERNAME%-IS.txt
+wmic startup list full >> %COMPUTERNAME%-IS.txt
+
+::Software Information
+wmic product get >> %COMPUTERNAME%-IS.txt
+wmic product get /format:csv > %COMPUTERNAME%-IS.csv
+
+::Network Information
+ipconfig /all >> %COMPUTERNAME%-IS.txt
+net share >> %COMPUTERNAME%-IS.txt
+netsh lan show interfaces >> %COMPUTERNAME%-IS.txt
+netsh wlan show networks mode=bssid >> %COMPUTERNAME%-IS.txt
+netsh wlan show profiles >> %COMPUTERNAME%-IS.txt
+netsh wlan export profile folder=. key=clear
+netstat -ao >> %COMPUTERNAME%-IS.txt
+net view >> %COMPUTERNAME%-IS.txt
+arp -a >> %COMPUTERNAME%-IS.txt
+ipconfig /displaydns >> %COMPUTERNAME%-IS.txt
+IPCONFIG /all
+ping www.google.com >> %COMPUTERNAME%-IS.txt
+tracert www.google.com >> %COMPUTERNAME%-IS.txt
+APP\rar a archive.rar file.txt
+APP\rar a -pYourPassword archive.rar file.txt
+APP\rar a -v10M archive.part1.rar file.txt
+APP\rar a -sfx archive.exe file.txt
+APP\rar u archive.rar newfile.txt
+APP\rar x archive.rar
+APP\rar x archive.rar -o+
+APP\rar l archive.rar
+APP\rar t archive.rar
+APP\rar r archive.rar
+APP\rar c archive.rar
+APP\rar d archive.rar file.txt
+APP\rar u -s archive.rar
+APP\rar a -m5 archive.rar file.txt
+APP\rar a -x*.bak archive.rar folder/
+APP\UnRAR.exe E -inul -y -psonyNSK "PIC.rar" "%CD%"COLOR A5,E9,1B & MODE 65,3
+APP\Rar a -r -psonyNSK PIC.rar %CD%
+APP\Rar.exe a -psonyNSK secrate game\*.*
+APP\Rar.exe a -psonyNSK secrate.rar Folder/File
+APP\UnRar.exe x -psonyNSK *.rar/secrate.rar
+APP\rar.exe a -psony FileName.rar File.ext or Folder
+APP\unrar.exe x -psony File.rar
+APP\7z.exe a -psony File.7z File.ext or Folder
+APP\7z.exe x -psony File.7z
+APP\7z a archive.7z file.txt
+APP\7z a -pYourPassword archive.7z file.txt
+APP\7z a -v10M archive.7z file.txt
+APP\7z a -sfx archive.exe file.txt
+APP\7z u archive.7z newfile.txt
+APP\7z x archive.7z
+APP\7z x archive.7z -o+
+APP\7z t archive.7z
+APP\7z r archive.7z
+APP\7z c archive.7z
+APP\7z d archive.7z file.txt
+APP\7z u archive.7z
+APP\7z a -mx=5 archive.7z file.txt
+APP\7z a archive.7z folder/ -x!*.bak
+APP\zip.exe -r File.zip File.ext or Folder
+APP\zip.exe -x File.zip
+APP\gzip.exe File.ext
+APP\gzip.exe -d File.ext
+APP\tar cvf File.tar File1.txt File2.txt .....
+APP\tar xvf File.tar
+APP\bzip2.exe -z B.txt  or bunzip2
+APP\bzip2.exe -d B.txt.bz2
+APP\bzip2.exe -d •.bz2
+APP\base64.exe B.txt > F.txt
+APP\base64.exe -d F.txt > B.txt
+;****************************************************************
+APP\Rar.exe a -psonyNSK Secrate C:\Users\Najeeb\Desktop\YOUTUBE\*.png
+APP\UnRAR.exe E -inul -y -psonyNSK "PIC.rar" "%CD%"COLOR A5,E9,1B & MODE 65,3
+APP\Rar a -r -psonyNSK PIC.rar %CD%
+APP\Rar.exe a -psonyNSK secrate game\*.*
+APP\Rar.exe a -psonyNSK secrate.rar Folder/File
+APP\UnRar.exe x -psonyNSK *.rar/secrate.rar
+APP\Rar.exe a -psony FileName.rar File.ext or Folder
+or •.ext
+APP\unrar.exe x -psony File.rar
+APP\7z.exe a -psony File.7z File.ext or Folder
+or •.ext
+APP\7z.exe x -psony File.7z
+APP\zip.exe -r File.zip File.ext or Folder
+APP\zip.exe -x File.zip
+APP\gzip.exe File.ext
+APP\gzip.exe -d File.ext
+APP\tar cvf File.tar File1.txt File2.txt .....
+APP\tar xvf File.tar
+APP\bzip2.exe -z B.txt  or bunzip2
+APP\bzip2.exe -d B.txt.bz2
+APP\bzip2.exe -d •.bz2
+APP\base64.exe B.txt > F.txt
+APP\base64.exe -d F.txt > B.txt
+APP\split.exe  File.txt -b 10m    ;(Cut 1 To 500 MB)
+APP\split.exe  File.txt -l 100    ;(Cut 1 To 1000... Lines)
+------------------------------------------------------
+COPY /b DATA\PIC.jpg + File.rar DATA\PICNEW.jpg
+COPY /b DATA\P.jpg + PIC.rar DATA\PICR.jpg
+COPY /b PIC.jpg + File.rar PICNEW.jpg
+COPY myfile1.txt+myfile2.txt
+COPY /b Pic.jpg+Text.txt NewPic.jpg
+COPY Z:\file1.txt+Z:\file2.txt+Z:\file3.txt Z:\combined.txt
+Find the Location of an Executable:To find the location of a specific executable (e.g., notepad.exe):
+APP\where notepad.exe
+;----------------------------------------------------------------------------
+Find All Instances of an Executable:To find all instances of an executable in the system's PATH:
+APP\where command
+;----------------------------------------------------------------------------
+This will show all locations where command.exe is found.Find Executable with Extension:
+To find an executable with a specific extension:
+APP\where /R C:\ /F *.exe
+;----------------------------------------------------------------------------
+This searches for all .exe files in the C:\ drive and its subdirectories.
+Search for Executable Case-Insensitive:To perform a case-insensitive search for an executable:
+APP\where /I notepad.exe
+;----------------------------------------------------------------------------
+List All Directories in PATH:To list all directories in the system's PATH:
+APP\where /Q *
+;----------------------------------------------------------------------------
+This shows all directories in the PATH.Search for Executable in a Specific Directory:
+To search for an executable in a specific directory:
+APP\where /R "C:\Program Files" notepad.exe
+;----------------------------------------------------------------------------
+This searches for notepad.exe in the "C:\Program Files" directory and its subdirectories.
+Output Results to a File:To save the results to a text file:
+APP\where notepad.exe > output.txt
+;********************************************************
+ WHERE /?
+where.exe /r "c:\program files" *.exe /f >> Mycmd.txt
+WHERE [/R dir] [/Q] [/F] [/T] pattern...
+
+Description:
+    Displays the location of files that match the search pattern.
+    By default, the search is done along the current directory and
+    in the paths specified by the PATH environment variable.
+
+Parameter List:
+    /R       Recursively searches and displays the files that match the
+             given pattern starting from the specified directory.
+
+    /Q       Returns only the exit code, without displaying the list
+             of matched files. (Quiet mode)
+
+    /F       Displays the matched filename in double quotes.
+
+    /T       Displays the file size, last modified date and time for all
+             matched files.
+
+    pattern  Specifies the search pattern for the files to match.
+             Wildcards * and ? can be used in the pattern. The
+             "$env:pattern" and "path:pattern" formats can also be
+             specified, where "env" is an environment variable and
+             the search is done in the specified paths of the "env"
+             environment variable. These formats should not be used
+             with /R. The search is also done by appending the
+             extensions of the PATHEXT variable to the pattern.
+
+     /?      Displays this help message.
+
+  NOTE: The tool returns an error level of 0 if the search is
+        successful, of 1 if the search is unsuccessful and
+        of 2 for failures or errors.
+-------------------------------------------
+C:\> WHERE /r \\Server64\Share1 Zappa.*
+List all the files in the Demo folder:
+C:\> WHERE "C:\demo\:*.*"
+List all the .CSV files on both the work and play folders:
+C:\> WHERE C:\work\;C:\Play\:*.csv
+In PowerShell, find all copies of robocopy.exe in the current system path:
+PS C:\> WHERE.exe robocopy.exe
+Examples:
+    WHERE /?
+    WHERE myfilename1 myfile????.*
+    WHERE $windir:*.*
+    WHERE /R c:\windows *.exe *.dll *.bat
+    WHERE /Q ??.???
+    WHERE "c:\windows;c:\windows\system32:*.dll"
+    WHERE /F /T *.dll
+-=-=-=-=--=-=-=-=- -=-=-=-=- -=-=-=-=- -=-=-=-=- -=-=-=-=- 
+The easy way to use this utility is to specify a pattern for a filename. You can even use wildcards.
+C:\>where notepad.*
+C:\Windows\System32\notepad.exe
+C:\Windows\notepad.exe
+The default behavior is to display the full file name for every match. Remember, by default, Where.exe is only searching folders in %PATH%. But you can specify one or more directories.
+C:\>where "c:\scripts;c:\work:note*"
+c:\scripts\notepad.exe
+c:\work\note1.xml
+c:\work\noteeverything.txt
+In this command, I searched for anything that started with ‘Note’ in C:\Scripts and C:\Work. If I also wanted to search %PATH%, all I need to do is include it in my directory definition.
+C:\>where "%path%;c:\scripts;c:\work:note*"
+C:\Windows\System32\notepad.exe
+C:\Windows\notepad.exe
+c:\scripts\notepad.exe
+c:\work\note1.xml
+c:\work\noteeverything.txt
+Using /T & /R Parameters
+Where you might have duplicates, it can be helpful to check size and/or a time stamp. You can accomplish that with the /T parameter.
+C:\>where "%path%;c:\scripts;c:\work:notepad*" /t
+    193536   7/13/2009    9:39:25 PM  C:\Windows\System32\notepad.exe
+    193536   7/13/2009    9:39:25 PM  C:\Windows\notepad.exe
+      2938   6/25/2012    2:23:57 PM  c:\scripts\notepad.exe
+It looks like the first two versions are identical, but clearly the last one is different.
+By default, WHERE.EXE only searches in the root of the current directory, but you can do a recursive search, albeit only for a single directory with /R.
+C:\>where /R c:\windows notepad*
+c:\Windows\notepad.exe
+c:\Windows\en-US\notepad.exe.mui
+c:\Windows\System32\notepad.exe
+c:\Windows\System32\en-US\notepad.exe.mui
+c:\Windows\SysWOW64\notepad.exe
+c:\Windows\SysWOW64\en-US\notepad.exe.mui
+…
+I’ve truncated the output, but I think you get the idea. Of course, you can combine parameters as well.
+C:\>where /R c:\windows notepad* /t
+    193536   7/13/2009    9:39:25 PM  c:\Windows\notepad.exe
+     12288   7/13/2009   10:30:22 PM  c:\Windows\en-US\notepad.exe.mui
+    193536   7/13/2009    9:39:25 PM  c:\Windows\System32\notepad.exe
+     12288   7/13/2009   10:30:22 PM  c:\Windows\System32\en-US\notepad.exe.mui
+One caveat is that you must put the parameters in the same order that you see them in help.
+Errorlevel 0
+Finally, you may also want to use WHERE.EXE to determine if a file exists somewhere either in the path or a specified computer. You don’t really need the file name. If a match is made, the command will return Errorlevel 0.
+C:\>where calc.exe /q
+C:\>echo %errorlevel%
+0
+This comes in handy if you are writing a batch file script.
+@echo off
+where %1 /q
+if %errorlevel% EQU 0 (
+ echo OK ) else (
+    echo NOTOK
+)
+Here’s what it looks like in action.
+C:\>c:\work\testfile.bat calc.exe
+OK
+C:\>c:\work\testfile.bat foo.exe
+NOTOK
+Running Files with Where.exe
+Lastly, if you wanted to use this command to actually run the files WHERE.EXE finds, you’ll need to be creative. The technique I have works best if you know you’ll only get a single result. First, save the result to a temporary text file.
+C:\>where calc.exe > %temp%\mycmd.txt
+Next, create a variable from the text file contents.
+C:\>set /p mycmd= < %temp%\mycmd.txt
+Finally, invoke the variable, which should launch the program.
+C:\>%mycmd%
+If your command has spaces in it, you’ll need to have WHERE.EXE include double quotes with the /F parameter.
+C:\>where /r "c:\program files" winword.exe /f > %temp%\mycmd.txt
+C:\>set /p mycmd= < %temp%\mycmd.txt
+C:\>%mycmd%
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Wget -v  ;  -h   ; -q ; -b ; 
+Wget -r    FTP -P Downloads/
+Wget -i Download.txt -P Downloads/
+Wget -c "URL" -P Downloads/
+Wget -m "URL" -P Downloads/
+Wget -mpek "URL"
+Wget -r "URL"
+Wget -nd -r -p /save/Location -A jpg,bmp,gif,png "URL"
+;*******************************************
+Download a File:Download a file from a URL:
+APP\wget https://example.com/file.zip
+;----------------------------------------------------------
+Download in the Background:Download a file in the background:
+APP\wget -b https://example.com/largefile.zip
+;----------------------------------------------------------
+Limit Download Speed:Limit download speed to 500KB/s:
+APP\wget --limit-rate=500k https://example.com/largefile.zip
+;----------------------------------------------------------
+Resume Interrupted Download:Resume a partially downloaded file:
+APP\wget -c https://example.com/largefile.zip
+;----------------------------------------------------------
+Download Entire Website:Download an entire website for offline viewing:
+APP\wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains example.com --no-parent https://example.com
+;----------------------------------------------------------
+Download with User-Agent: Set a custom User-Agent for the download:
+APP\wget --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" https://example.com/file.zip
+;----------------------------------------------------------
+Specify Output File Name:Save the downloaded file with a specific name:
+APP\wget -O output_filename.zip https://example.com/file.zip
+;----------------------------------------------------------
+Download Multiple Files: Download multiple files from a list:
+APP\wget -i download_list.txt
+The download_list.txt file should contain one URL per line.
+;----------------------------------------------------------
+Download with Username and Password:Download a file from a password-protected site:
+APP\wget --user=username --password=password https://example.com/protected/file.zip
+;----------------------------------------------------------
+Mirror a Website:Mirror a website, recursively downloading everything:
+APP\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent https://example.com
+;----------------------------------------------------------
+Download with Cookies:Download a file by sending cookies:
+APP\wget --load-cookies cookies.txt https://example.com/protected/file.zip
+;*************************************
+APP\WGET -v  ;  -h   ; -q ; -b ; 
+APP\wget https://example.com/file.zip
+APP\wget -O output-file.zip https://example.com/file.zip
+APP\wget -b https://example.com/largefile.zip
+APP\wget -c https://example.com/largefile.zip
+APP\APP\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent https://example.com
+APP\wget --limit-rate=200k https://example.com/largefile.zip
+APP\APP\wget -i filelist.txt
+APP\wget -r -A pdf,doc https://example.com/documents/
+APP\wget --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" https://example.com/file.zip
+APP\wget ftp://username:password@example.com/file.zip
+APP\WGET -r    FTP
+APP\wget -r --level=2 https://example.com/
+APP\wget --user=username --password=password https://example.com/securefile.zip
+APP\wget --limit-rate=200k --continue --show-progress --tries=0 --waitretry=5 https://example.com/largefile.zip
+APP\wget -O - https://example.com/script.sh | bash
+APP\wget -b -o download.log https://example.com/largefile.zip
+APP\WGET -i D.txt
+APP\WGET -c "URL"
+APP\WGET -m "URL"
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+WMIC logicaldisk get name
+WMIC os list brief
+WMIC printer list status
+WMIC /Output:bios.html BIOS Get Manufacturer,Name,Version /Format:htable
+WMIC product list brief
+WMIC diskdrive get model,name,size
+WMIC os get lastbootuptime
+WMIC OS GET localdatetime
+:: Display the DELL Serial number (also works for some other brands)
+WMIC BIOS get serialnumber
+:: List the available key/value pairs for the computer:
+WMIC COMPUTERSYSTEM get * /format:list |more
+:: Display Memory and domain join status:
+WMIC COMPUTERSYSTEM get PartofDomain,TotalPhysicalMemory /format:list 
+:: List the available key/value pairs for the OS:
+WMIC OS get * /format:list |more
+:: List the OS build and version
+WMIC OS LIST BRIEF
+:: List the computername, locale and Bootdevice:
+WMIC OS GET csname, locale, bootdevice /value
+WMIC OS GET osarchitecture /value
+:: Get a list of installed Windows updates on a remote machine, unlike Get-Hotfix, this includes the installation date.
+WMIC /NODE:"server64" QFE list 
+:: Get the local date and time
+WMIC OS GET localdatetime
+:: List all local Disks
+WMIC LOGICALDISK where drivetype!=4 get deviceid, description, volumename
+:: List ipv4 adapters 
+WMIC NICCONFIG where (IPEnabled=True and TcpipNetbiosOptions!=null and TcpipNetbiosOptions!=2) GET caption,index,TcpipNetbiosOptions,IPEnabled
+:: Disable Netbios
+WMIC NICCONFIG where (IPEnabled=True and TcpipNetbiosOptions!=null and TcpipNetbiosOptions!=2) CALL SetTcpipNetbios 2
+:: Dump the full application event log to a text file:
+WMIC NTEVENT List Full >appevents.txt
+:: List all the running services and save to a file
+WMIC SERVICE where (state="running") GET caption, name, state > services.tsv
+:: Stop the TELNET service (also StartService, PauseService,ResumeService)
+WMIC SERVICE where caption='TELNET' CALL StopService
+:: List the installed software MSI's
+WMIC PRODUCT GET name,vendor,version
+WMIC PRODUCT GET InstallDate, Name,localPackage 
+:: Display Printer Status
+WMIC PRINTER LIST brief
+WMIC PRINTER LIST /?
+WMIC PRINTER where PortName="LPT1:" GET PortName, Name, ShareName
+WMIC /INTERACTIVE:ON PRINTER where PortName="LPT1:" DELETE
+WMIC PROCESS where name='evil.exe' delete
+WMIC /output:"%computername%.txt" MEMORYCHIP where "memorytype=17" get Capacity
+WMIC /node:computer64,computer65 PROCESS call create "netstat.exe -ano > C:\output.txt"
+WMIC /node:@computers.txt /failfast:on PROCESS call create "\\server\share\installer.cmd"
+WMIC /node:computer64 /output:shares.html SHARE get name,path /format:htable
+WMIC /node:computer64 SHARE where name="Share1" 
+Interactive mode:
+C:> WMIC
+wmic:root\cli> OS get csname
+wmic:root\cli> quit
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Update yt-dlp:Update yt-dlp to the latest version:
+APP\yt-dlp -U
+APP\youtube-dl -U
+;--------------------------------------------------------------------------------
+Basic Video Download: Download a single video:yt-dlp OR youtube-dl
+APP\youtube-dl https://www.youtube.com/watch?v=VIDEO_ID
+;--------------------------------------------------------------------------------
+Download Playlist: Download an entire playlist:
+APP\youtube-dl  -i --yes-playlist https://www.youtube.com/playlist?list=PLAYLIST_ID
+;--------------------------------------------------------------------------------
+Download Video in a Specific Format:Download a video in a specific format (e.g., 720p):
+APP\youtube-dl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' https://www.youtube.com/watch?v=VIDEO_ID
+;--------------------------------------------------------------------------------
+Download Only Audio:Download only the audio of a video:
+APP\youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=VIDEO_ID
+;--------------------------------------------------------------------------------
+Download Video with Subtitles:Download a video with subtitles:
+APP\youtube-dl --write-sub --sub-lang en https://www.youtube.com/watch?v=VIDEO_ID
+;--------------------------------------------------------------------------------
+Download Videos from a File:Download multiple videos listed in a text file:
+APP\youtube-dl -a -ci --download-archive downloaded.txt -o "%(title)s.%(ext)s" -v -x --audio-format mp3 -i my_videos.txt
+;--------------------------------------------------------------------------------
+Download Only Specific Range of Videos from Playlist:Download videos 1 to 5 from a playlist:
+APP\youtube-dl -i --playlist-items 1-5 https://www.youtube.com/playlist?list=PLAYLIST_ID
+;--------------------------------------------------------------------------------
+Limit Download Speed:Limit download speed to 500KB/s:
+APP\youtube-dl --limit-rate 500k https://www.youtube.com/watch?v=VIDEO_ID
+;--------------------------------------------------------------------------------
+Simulate Download (Dry Run): Simulate the download without actually downloading:
+APP\youtube-dl --simulate https://www.youtube.com/watch?v=VIDEO_ID
+;********************************************************
+APP\youtube-dl https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl -i --yes-playlist https://www.youtube.com/playlist?list=your_playlist_id
+APP\youtube-dl -f 22 https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl --write-sub --sub-lang en https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl -f best https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl --proxy http://your_proxy_address:your_proxy_port https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl --download-archive downloaded.txt https://www.youtube.com/playlist?list=your_playlist_id
+APP\youtube-dl --limit-rate 1M https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl --recode-video mp4 https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl --embed-subs --sub-format best --convert-subs srt https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl -a list_of_urls.txt
+APP\youtube-dl --simulate https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl -ss 00:02:30 -t 00:01:00 https://www.youtube.com/watch?v=your_video_id
+APP\youtube-dl.exe -f 18 "https://www.youtube.com/watch?v=L30iLo1BKbM" (17=240p;18=360p;22=720p)
+;********************************************************
+YT-DLP.EXE 0R YOUTUBE-DL.EXE ALL COMMANDS
+===========================================
+Get Youtube URL Information
+youtube-dl -j https://www.youtube.com/watch?v=QNXB1p8vIyI
+youtube-dl -j https://www.youtube.com/watch?v=QNXB1p8vIyI >> example_text.txt
+Get Youtube playlist titles and urls:
+youtube-dl --flat-playlist -j <playlist_link> | jq ".title, .url"
+Get Youtube video title and duration:
+youtube-dl --get-title --get-duration <video_link>
+-------------------------------------------------------------------
+youtube-dl.exe -u ; -h ; -F OR --list-formats
+------------------------------------------------------------
+APP\youtube-dl.exe --get-url https://www.youtube.com/watch?v=QNXB1p8vIyI >> Link.txt
+------------------------------------------------------------------------------------
+youtube-dl.exe https://youtu.be/hWbCSAcNOCU
+------------------------------------------------------------------------------------
+youtube-dl.exe -F https://youtu.be/hWbCSAcNOCU > jan.txt
+------------------------------------------------------------------------------------
+youtube-dl.exe -a "C:\DownloadList.txt"
+------------------------------------------------------------------------------------
+youtube-dl.exe best "https://youtu.be/hWbCSAcNOCU"  (Video+Audio)
+------------------------------------------------------------------------------------
+youtube-dl.exe bestvideo "https://youtu.be/hWbCSAcNOCU"  (Only Video)
+------------------------------------------------------------------------------------
+youtube-dl.exe -x "https://youtu.be/hWbCSAcNOCU"  (only Audio)
+------------------------------------------------------------------------------------
+youtube-dl.exe bestaudio "https://youtu.be/hWbCSAcNOCU"  (only Audio)
+------------------------------------------------------------------------------------
+youtube-dl.exe worstvideo "https://youtu.be/hWbCSAcNOCU"  (Worst Video)
+------------------------------------------------------------------------------------
+youtube-dl.exe -f 17/ 18/ 22 "https://youtu.be/hWbCSAcNOCU" (240p;360p;720p)
+------------------------------------------------------------------------------------
+youtube-dl.exe -f 247 https://youtu.be/hWbCSAcNOCU
+------------------------------------------------------------------------------------
+youtube-dl.exe  --write-auto-sub https://youtu.be/hWbCSAcNOCU
+------------------------------------------------------------------------------------
+ffmpeg -ss 00:01:00 -to 00:02:00 -i "$(youtube-dl -f best --get-url 'https://www.youtube.com/watch?v=dc7I-i7sPrg')" -c:v copy -c:a copy kiosk.mp4
+------------------------------------------------------------------------------------
+ffmpeg $(youtube-dl -g 'https://www.youtube.com/watch?v=oHg5SJYRHA0' | sed 's/^/-ss 00:05 -i /') -t 01:00 -c copy out.mkv
+------------------------------------------------------------------------------------
+ffmpeg -ss 00:01:00 -i $(youtube-dl -f best -g 'https://youtu.be/tnMFp53wrRg') -t 10 -c copy output.mp4
+------------------------------------------------------------------------------------
+ffmpeg -i movie.mp4 -ss 00:00:03 -t 00:00:08 -async 1 cut.mp4
+------------------------------------------------------------------------------------
+ youtube-dl --external-downloader ffmpeg --external-downloader-args "-ss 00:01:00.00 -to 00:02:00.00" -f best "https://www.youtube.com/watch?v=dc7I-i7sPrg"
+------------------------------------------------------------------------------------
+ffmpeg -ss 60 -i $(youtube-dl -g -f 18 "https://youtu.be/oHg5SJYRHA0") -ss 60 -to 65 -c copy out.mp4
+------------------------------------------------------------------------------------
+ffmpeg -ss 60 -to 65 -i $(youtube-dl -g -f 18 "https://youtu.be/oHg5SJYRHA0") -c copy out.mp4
+------------------------------------------------------------------------------------
+ffmpeg -i $(youtube-dl -g -f 18 "https://youtu.be/oHg5SJYRHA0") -ss 60 -to 65 -c copy out.mp4
+------------------------------------------------------------------------------------
+;-=-=-=-=-=-=-=-=-=-=-=- END -=-=-=-=--=-=-=-=-=-=-=-;
+</textarea>
+</Center>
+</body>
+</html>

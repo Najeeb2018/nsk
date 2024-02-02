@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic M3U Playlist Generator</title>
+</head>
+<body>
+
+<h1>Najeeb M3U Playlist Generator</h1>
+
+<!-- Input field for video URLs -->
+<label for="videoInput">Enter Video URLs (separated by commas):</label>
+<input type="text" id="videoInput" placeholder="e.g., url1, url2, url3">
+<button onclick="generatePlaylist()">Generate Playlist</button>
+
+<!-- Display generated playlist -->
+<textarea id="playlistOutput" rows="10" cols="50" readonly></textarea>
+
+<script>
+    function generatePlaylist() {
+        // Get video URLs from the input field
+        const videoInput = document.getElementById('videoInput').value;
+        const videoURLs = videoInput.split(',').map(url => url.trim());
+
+        // Generate M3U playlist
+        const m3uPlaylist = "#EXTM3U\n" + videoURLs.map(url => `#EXTINF:0, Video\n${url}`).join('\n');
+
+        // Display the generated playlist in the output textarea
+        const playlistOutput = document.getElementById('playlistOutput');
+        playlistOutput.value = m3uPlaylist;
+    }
+</script>
+
+</body>
+</html>

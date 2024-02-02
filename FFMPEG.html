@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html>
+<head><Title>Najeeb CMD All Commands</Title>
+<style>
+textarea {
+  resize: none;
+  width: 950px;
+  height: 650px;
+ font-size: 18px;
+}
+</style>
+</head>
+<body>
+<Center>
+<textarea id="w3review" name="w3review" rows="26" cols="50">
+[Najeeb All FFMPEG Commands]
+Basic Conversion: Convert video from one format to another:
+APP\ffmpeg -i input.mp4 output.avi
+;---------------------------------------------------------------------
+Convert audio from one format to another:
+APP\ffmpeg -i input.mp3 output.wav
+;---------------------------------------------------------------------
+Changing Video Codec:Convert video to H.264 codec:
+APP\ffmpeg -i input.mp4 -c:v libx264 output.mp4
+;---------------------------------------------------------------------
+Convert video to VP9 codec:
+APP\ffmpeg -i input.mp4 -c:v libvpx-vp9 output.webm
+;---------------------------------------------------------------------
+Changing Audio Codec:Convert audio to AAC codec:
+APP\ffmpeg -i input.mp3 -c:a aac output.m4a
+;---------------------------------------------------------------------
+Convert audio to Ogg Vorbis codec:
+APP\ffmpeg -i input.mp3 -c:a libvorbis output.ogg
+;---------------------------------------------------------------------
+Resizing and Scaling:Resize video to a specific width and height:
+APP\ffmpeg -i input.mp4 -vf scale=640:480 output.mp4
+;---------------------------------------------------------------------
+Trimming and Cutting:Trim a video from 10 seconds to 20 seconds:
+APP\ffmpeg -i input.mp4 -ss 10 -to 20 -c copy output.mp4
+APP\ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:30 -c copy output.mp4
+;---------------------------------------------------------------------
+Concatenating Videos:Concatenate two videos:
+APP\ffmpeg -i input1.mp4 -i input2.mp4 -filter_complex "[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
+;---------------------------------------------------------------------
+Extracting Audio:Extract audio from a video file:
+APP\ffmpeg -i input.mp4 -vn -acodec copy output.aac
+;---------------------------------------------------------------------
+Adding Watermark:Add a watermark to a video:
+APP\ffmpeg -i input.mp4 -i watermark.png -filter_complex "overlay=10:10" output.mp4
+APP\ffmpeg -i input.mp4 -i watermark.png -filter_complex overlay=W-w-10:H-h-10 output.mp4
+;---------------------------------------------------------------------
+Live Streaming: Stream video to an RTMP server:
+APP\ffmpeg -i input.mp4 -c:v libx264 -b:v 800k -c:a aac -strict experimental -f flv rtmp://your.server/live/streamKey
+;---------------------------------------------------------------------
+Extracting Frames as Images: Extract frames from a video:
+APP\ffmpeg -i input.mp4 -vf fps=1/5 output-{asc 0037}d.png
+APP\ffmpeg -i input.mp4 -vf fps=1 out%d.png
+;**************************************************
+APP\ffmpeg -i input1.mp4 -i input2.mp4 -filter_complex concat=n=2:v=1:a=1 -f mp4 output.mp4
+APP\ffmpeg -framerate 24 -i input-{asc 0037}d.png output.mp4
+APP\ffmpeg -i input.mp4 -vf subtitles=subs.srt output.mp4
+APP\ffmpeg -i input.mp4 -filter:v "setpts=0.5*PTS" output.mp4
+APP\ffmpeg -i input.mp4 -f ffmetadata metadata.txt
+APP\ffmpeg -i input.mp4 -c:v libx264 -c:a aac output.mp4
+APP\ffmpeg -i input.mp4 -vf "fps=10,scale=320:-1:flags=lanczos" -c:v gif output.gif
+APP\ffmpeg -i input.mp4 -c:v libx264 -preset ultrafast -tune zerolatency -c:a aac -strict experimental -f flv rtmp://your_streaming_server/live/stream_key
+===================================================================
+DESKTOP VIDEO CAPTURE
+@APP\ffmpeg.exe -f gdigrab -framerate 30 -i desktop "%CD%\Downloads\OUTPUT.mp4"
+@APP\ffmpeg -f x11grab -video_size 1920x1080 -i :0.0 -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac output.mp4
+===================================================================
+VIDEO TO VIDEO OVERLAY
+@APP\ffmpeg.exe -i DATA\B.mp4 -vf  "movie=DATA\A.mp4, scale=250: -1 [inner]; [in][inner] overlay =10: 10 [out]" "%CD%\Downloads\OUTPUT.mp4"
+@APP\ffmpeg.exe -i DATA\B.mp4 -vf  "movie=DATA\A.mp4, scale=300: -1 [inner]; [in][inner] overlay = main_w-(overlay_w +10) : 10 [out]" "%CD%\Downloads\OUTPUT.mp4"
+@APP\ffmpeg.exe -i DATA\B.mp4 -vf  "movie=DATA\A.mp4, scale=300: -1 [inner]; [in][inner] overlay = main_h-(overlay_h +10) : 10 [out]" "%CD%\Downloads\OUTPUT.mp4"
+@APP\ffmpeg.exe -i DATA\B.mp4 -vf  "movie=DATA\A.mp4, scale=300: -1 [inner]; [in][inner] overlay = main_w-(overlay_w +10) : main_h-(overlay_h +10) [out]" "%CD%\Downloads\OUTPUT.mp4"
+@APP\ffmpeg -i DATA\A.mp4 -i DATA\B.mp4 -filter_complex "[0:v]colorkey=color=green:similarity=0.1[transper];[1:v][transper]overlay[out]" -map "[out]" "%CD%\Downloads\output.mp4"
+===================================================================
+VIDEO TO PICTURE OVERLAY
+@APP\ffmpeg.exe -i DATA\B.mp4 -i DATA\N.png -filter_complex "[0:v][1:v] overlay=25:25:enable='between(t,0,20)'" -pix_fmt yuv420p -c:a copy "%CD%\Downloads\OUTPUT.mp4"
+@APP\ffmpeg -i DATA\N.ico -i DATA\A.mp4 -filter_complex "[0:v]colorkey=green[transper];[1:v][transper]overlay[out]" -map "[out]" "%CD%\Downloads\output.mp4"
+=========================================================================
+VIDEO FILE EXTRAC PICTURES
+@APP\ffmpeg.exe -i "DATA\A.mp4" -vf fps=1 "%CD%\Downloads\OUT-%d.png"
+@APP\ffmpeg.exe -i DATA\A.mp4 -r 0.5 -f image2 "%CD%\Downloads\OUT-%05d.jpg"
+@APP\ffmpeg.exe -i DATA\A.mp4 -r 0.01979 -f image2 "%CD%\Downloads\output_%05d.jpg"
+@APP\ffmpeg.exe -i DATA\A.mp4 -ss 00:00:14.435 -frames:v 1 "%CD%\Downloads\images3.jpg"
+@APP\ffmpeg.exe -i DATA\A.mp4 -vf fps=1 "%CD%\Downloads\out%d.png"
+===================================================================
+VIDEO TO TEXT OVERLAY
+@APP\ffmpeg.exe -i DATA\A.mp4 -vf  "drawtext=fontfile=Font\Ampher.ttf:textfile=Font\T.txt:reload=1:fontcolor=white:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-text_h)/2" -codec:a copy "%CD%\Downloads\output.mp4"
+@APP\ffmpeg.exe -i DATA\A.mp4 -vf  "drawtext=fontfile=Font\Ampher.ttf:textfile=Font\T.txt:fontcolor=Redfontsize=24:x=(w-text_w)/2:y=(h-text_h)/2 "%CD%\Downloads\output.mp4"
+@APP\ffmpeg.exe -i DATA\A.mp4 -vf drawtext=fontfile=Font\Ampher.ttf:text=NAJEEB:fontsize=24:x=80:y=20+24-max_glyph_a "%CD%\Downloads\output.mp4"
+===================================================================
+How to add text to video
+@APP\ffmpeg -i DATA\A.mp4 -vf "drawtext=text=Vladimir Topolev: x=(w-tw)/2:y=(h-th-50): fontcolor=#ffffff:fontsize=48: fontfile=media/ProximaNova.otf" "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -i DATA\A.mp4 -vf "drawtext=text=Vladimir Topolev: x=t*180:y=(h-th-50):fontcolor=#ffffff:fontsize=48: fontfile=media/ProximaNova.otf" "%CD%\Downloads\output.mp4"
+================================================
+How to add subtitles to video
+   1
+00:00:00,200 --> 00:00:01,600
+So you wanna build the digital resume
+2
+00:00:02,000 --> 00:00:03,500
+but you don't know where start
+3
+00:00:03,600 --> 00:00:05,400
+Follow along and I'll guide you
+4
+00:00:05,500 --> 00:00:06,900
+step by step on how
+5
+00:00:07,000 --> 00:00:08,600
+you can build your customizable
+6
+00:00:08,800 --> 00:00:10,000
+Fearless+ digital profile
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video Size Reduse 
+ffmpeg -i input_video.mp4 -vf "scale=640:360" -c:a copy output_video.mp4
+ffmpeg -i 1.mp4 -vf "scale=360:640" -c:a copy output_video.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video Mute Audio (Whitout Audio File)
+ffmpeg -i input_video.mp4 -c copy -an output_video.mp4
+ffmpeg -i 2.mp4 -c copy -an output_video.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Audio file cut In Time (21Sec) 
+ffmpeg -i input_audio.mp3 -t 21 -c:a copy output_cut_audio.mp3
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video+Another Audio Combin
+ffmpeg -i 2.mp4 -i 2.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
+ffmpeg -i 2.mp4 -i 2.mp3 -c:v copy -c:a aac -strict experimental -shortest output_combined.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video+Logo PNG
+ffmpeg.exe -i video.mp4 -i logo.png -filter_complex “overlay=X:Y” output.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=main_w-overlay_w-10:10" -codec:a copy out.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[1:v]scale=140:140[logo];[0:v][logo]overlay=360:10:format=auto,setsar=1" -c:a copy output_video.mp4
+
+ffmpeg -i 2.mp4 -i F.png -filter_complex "overlay=10:10" output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "overlay=10:10" -c:v copy -c:a copy output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:10[scaled];[scaled]scale=100:100[logo];[0:v][logo]overlay=W-w-10:10" -c:a copy output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10[outv]" -map "[outv]" -map 0:a output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10[outv]" -map "[outv]" -c:a copy output_video.mp4
+
+
+ffmpeg -i input_video.mp4 -i logo.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[1:v]scale=50:50[logo];[0:v][logo]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v] overlay=25:25:enable='between(t,0,21)'" -pix_fmt yuv420p -c:a copy output.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ffmpeg -framerate 24 -i W_%d.jpg output.mp4
+ffmpeg -framerate 1/5 -i W_%d.jpg output.mp4
+ffmpeg -start_number 126 -i img%03d.png -pix_fmt yuv420p out.mp4
+ffmpeg -loop 1 -i img.jpg -c:v libx264 -t 30 -pix_fmt yuv420p out.mp4
+ffmpeg -f concat -i input.txt -vsync vfr -pix_fmt yuv420p output.mp4
+input.txt
+file '/path/to/dog.png'
+duration 5
+file '/path/to/cat.png'
+duration 1
+file '/path/to/rat.png'
+duration 3
+file '/path/to/tapeworm.png'
+duration 2
+file '/path/to/tapeworm.png'
+
+ffmpeg -framerate 1/5 -i W_%d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -vf "fps=25,format=yuv420p" out.mp4
+
+ffmpeg -loop 1 -i W_%d.jpg -i 5.mp3 -c:v libx264 -c:a aac -b:a 192k -shortest out.mp4
+ffmpeg -loop 1 -i W_%d.jpg -i 5.mp3 -c:v libx264 -c:a copy -shortest out.mp4
+-------------------------------------------------------------------------------------------------------
+ffmpeg -framerate 24 -i W_%d.jpg output.mp4
+ffmpeg -framerate 1/5 -i W_%d.jpg output.mp4
+ffmpeg -start_number 126 -i img%03d.png -pix_fmt yuv420p out.mp4
+ffmpeg -loop 1 -i img.jpg -c:v libx264 -t 30 -pix_fmt yuv420p out.mp4
+ffmpeg -f concat -i input.txt -vsync vfr -pix_fmt yuv420p output.mp4
+input.txt
+file '/path/to/dog.png'
+duration 5
+file '/path/to/cat.png'
+duration 1
+file '/path/to/rat.png'
+duration 3
+file '/path/to/tapeworm.png'
+duration 2
+file '/path/to/tapeworm.png'
+----------------------------------------------------------------------------
+ffmpeg -i A.mp4 -c copy -map 0 -f segment -segment_time 15 -reset_timestamps 1 -segment_format_options movflags=+faststart out%03d.mp4
+
+ffmpeg -i A.mp4 -i 1.mp4 -filter_complex " [1:v]scale=iw/4:-1:flags=lanczos[loc0]; [0:v]transpose=1,setpts='if(eq(N,0),PTS,PTS+2.501/TB)',fps=30[rotate1]; [rotate1][loc0]overlay=main_w-overlay_w-10:main_h-overlay_h-10:eof_action=pass[rem0]; [0:a]adelay=2501|2501,apad[0a]; [0a][1:a]amerge=inputs=2[a]" -map "[rem0]" -map "[a]" -ac 2 -vcodec libx264 -ar 44100 -acodec aac completed.mp4
+--------------------------------------------------------------------------------
+ffmpeg -framerate 30 -i "W_%d.jpg" -c:v libx265 -crf 28 output.mp4
+ffmpeg -r 1/5 -i img%%03d.jpg -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i W_%d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -vf "fps=25,format=yuv420p" out.mp4
+-------------------------------------------------------------
+mylist.txt
+file '/path/to/file1.mp4'
+file '/path/to/file2.mp4'
+file '/path/to/file3.mp4'    
+ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
+
+---------------------------------------------------------------------------
+ffmpeg -loop 1 -i W_%d.jpg -i 5.mp3 -c:v libx264 -c:a aac -b:a 192k -shortest out.mp4
+ffmpeg -loop 1 -i W_%d.jpg -i 5.mp3 -c:v libx264 -c:a copy -shortest out.mp4
+ffmpeg -r 23.977 -i %06d.tif -c:v copy out.mkv
+ffmpeg -r 23.977 -i %06d.tif out.mkv
+ffmpeg.exe -ss 76 -t 10 -i in.mp4 -an out.mp4
+-------------------------------------------------------------------------------------------------------
+ffmpeg -i 2.mp3 -i A.mp4 -filter_complex "[0:a][1:a]amerge,pan=stereo|c0
+ffmpeg -i 2.mp3 -i A.mp4 -filter_complex \"[0:a][1:a]amerge,pan=stereo:c0<c0+c2:c1<c1+c3[out]" \-map 1:v -map "[out]" -c:v copy -c:a libfdk_aac -shortest output.mp4
+
+ffmpeg -i A.mp4 -i 2.mp3 -filter_complex "[0:a][1:a]amerge=inputs=2[a]" -map 0:v -map "[a]" -c:v copy -ac 2 output.mkv
+ffmpeg -i A.mp4 -stream_loop -1 -i 2.mp3 -c:v copy -filter_complex "[0:a]aformat=fltp:44100:stereo,apad[0a];[1]aformat=fltp:44100:stereo,volume=0.08[1a];[0a][1a]amerge[a]" -map 0:v -map "[a]" -ac 2 -shortest output.mp4
+-----------------------------------------------------------------------------------------------------------
+ffmpeg -i A.mp4 -vcodec copy -acodec copy -encryption_scheme cenc-aes-ctr -encryption_key 76a6c65c5ea762046bd749a2e632ccbb -encryption_kid a7e61c373e219033c21091fa607bf3b8 encrypted.mp4
+ffmpeg -i A.mp4 -vcodec copy -encryption_scheme cenc-aes-ctr -encryption_key 76a6c65c5ea762046bd749a2e632ccbb -encryption_kid a7e61c373e219033c21091fa607bf3b8 encrypted.mp4
+ffplay encrypted.mp4 -decryption_key 76a6c65c5ea762046bd749a2e632ccbb
+ffmpeg -decryption_key 76a6c65c5ea762046bd749a2e632ccbb -i encrypted.mp4 Decryt.mp4
+ffmpeg -framerate 1/5 -f image2 -i W_%d.jpg -r 25 -c:v png testImg2.avi -y
+ffmpeg -i testImg2.avi -f image2 imagesNew%03d.png -y
+-----------------------------------------------------------------------------------------------------------
+ffmpeg -i 2.mp3 -i A.mp4 -filter_complex "[0:a][1:a]amerge,pan=stereo|c0
+ffmpeg -i 2.mp3 -i A.mp4 -filter_complex \"[0:a][1:a]amerge,pan=stereo:c0<c0+c2:c1<c1+c3[out]" \-map 1:v -map "[out]" -c:v copy -c:a libfdk_aac -shortest output.mp4
+
+ffmpeg -i A.mp4 -i 2.mp3 -filter_complex "[0:a][1:a]amerge=inputs=2[a]" -map 0:v -map "[a]" -c:v copy -ac 2 output.mkv
+Ffmpeg Video+Video
+ffmpeg -i 2.mp4 -i 1.mp4 -filter_complex "[0:v][1:v]scale=100:100 [ovrl]; [ovrl]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+To make the command line clearer, below are what some common FFmpeg command-line options specify, including -c:v, -b:v, -c:a, -b:a, CRF. These options are frequently used for reducing video size in FFmpeg.
+-c:v: video codec
+-b:v: video bitrate
+-c:a: audio codec
+-b:a: audio bitrate
+-filter:v: a filter to video stream
+-f is used to explicitly specify the container format, -f mp4, -f wmv, -f webm, etc.
+---------------------------------------------
+ffmpeg -i spadebee.mp4 -c:v libx265 -crf 28 newspadebee.mp4
+ffmpeg -i B.mp4 -c:v libx264 -b:v 1.5M -c:a aac -b:a 128k target.mp4
+ffmpeg -i video.flv -hide_banner
+ffmpeg -i video.flv
+ffmpeg -i video.flv image%d.jpg
+ffmpeg -f image2 -i image%d.jpg imagestovideo.mpg
+ffmpeg -i video.flv -vn -ar 44100 -ac 2 -ab 192 -f mp3 audio.mp3
+ffmpeg -i video.flv video.mpg
+ffmpeg -i video.flv animated.gif.mp4
+ffmpeg -i video.mpg -ab 26k -f flv video1.flv
+ffmpeg -i video.avi -target pal-dvd -ps 2000000000 -aspect 16:9 video.mpeg
+ffmpeg -i video.mpg -target vcd vcd_video.mpg
+ffmpeg -i video1.avi -vn -ar 44100 -ac 2 -ab 192 -f mp3 audio3.mp3
+ffmpeg -i audio.mp3 -i video.avi video_audio_mix.mpg
+ffmpeg -i video.mpg -vf "setpts=0.5*PTS" highspeed.mpg
+ffmpeg -i video.mpg -vf "setpts=4.0*PTS" lowerspeed.mpg -hide_banner
+ffplay video1.mp4
+ffplay audio_filename1.mp3
+ffmpeg -loop 1 -i image.jpg -i Bryan\ Adams\ -\ Heaven.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+ffmpeg -i video.mp4 -i subtitles.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast video-output.mkv
+ffmpeg -ss 00:00:30 -i orginalfile.mpg -t 00:00:05 -vcodec copy -acodec copy newfile.mpg
+ffmpeg -f image2 -i image%d.jpg video.mpg
+ffmpeg -i video.mpg image%d.jpg
+ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4
+ffmpeg -i input.avi -vf scale=320:240 output.avi
+ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
+ffmpeg -i source_video.avi input -acodec aac -ab 128kb -vcodec mpeg4 -b 1200kb -mbd 2 -flags +4mv+trell -aic 2 -cmp 2 -subcmp 2 -s 320x180 -title X final_video.mp4
+ffmpeg -i source_video.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 sound.mp3
+ffmpeg -i input_sound.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 output_sound.mp3
+ffmpeg -i original_video.avi final_video.mpg
+ffmpeg -i original_video.avi -ab 56 -ar 44100 -b 200 -r 15 -s 320x240 -f flv final_video.flv
+ffmpeg -i original_video.avi -s 320x240 -vcodec msmpeg4v2 final_video.avi
+ffmpeg -i input.mp4 -i subtitles.srt -c copy -c:s mov_text output.mp4
+ffmpeg -i input.mp4 -ss 00:00:50.0 -codec copy -t 20 output.mp4
+ffmpeg -i video.mp4 -t 00:00:50 -c copy small-1.mp4 -ss 00:00:50 -codec copy small-2.mp4
+ffmpeg -i youtube.flv -c:v libx264 filename.mp4
+ffmpeg -i video.wmv -c:v libx264 -preset ultrafast video.mp4
+ffmpeg -f concat -i file-list.txt -c copy output.mp4
+ffmpeg -i video.mp4 -an mute-video.mp4
+ffmpeg -i video.mp4 -vn -ab 256 audio.mp3
+ffmpeg -i video.mp4 -vf scale=500:-1 -t 10 -r 10 image.gif
+ffmpeg -ss 00:00:15 -i video.mp4 -vf scale=800:-1 -vframes 1 image.jpg
+ffmpeg -i movie.mp4 -r 0.25 frames_%04d.png
+ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental output.mp4
+ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental -shortest output.mp4
+ffmpeg -i input.mp4 -s 480x320 -c:a copy output.mp4
+ffmpeg -r 1/5 -i img%03d.png -c:v libx264 -r 30 -pix_fmt yuv420p slideshow.mp4
+ffmpeg -loop 1 -i image.jpg -i audio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+ffmpeg -loop 1 -i image.png -c:v libx264 -t 30 -pix_fmt yuv420p video.mp4
+ffmpeg -i movie.mp4 -i subtitles.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast output.mkv
+ffmpeg -ss 00:01:30 -t 30 -acodec copy -i inputfile.mp3 outputfile.mp3
+ffmpeg -i input.wav -af 'volume=0.5' output.wav
+ffmpeg -i input.mp4 -filter:v 'transpose=1' rotated-video.mp4
+ffmpeg -i input.mp4 -filter:v 'transpose=2,transpose=2' rotated-video.mp4
+ffmpeg -i input.mp4 -filter:v "setpts=0.125*PTS" output.mp4
+ffmpeg -i input.mkv -filter:a "atempo=2.0" -vn output.mkv
+ffmpeg -i dil.mp4 -sameq -ab 64k -ar 44100 dilenada.3gp
+ffmpeg  -y -i movie.mp4 \
+        -r 20 -s 352x288 -vb 400k \
+        -acodec aac -strict experimental -ac 1 -ar 8000 -ab 24k \
+        movie.3gp
+ ffmpeg -i input.3gp -c:v copy -c:a copy output.mp4
+ ffmpeg -i source.mp4 -c:v libx264 -b:v 1.5M -c:a aac -b:a 128k target.mp4
+ ffmpeg -i source.mp4 -c:v libvpx-vp9 -b:v 1M -c:a libopus -b:a 128k target.webm
+ ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4
+ ffmpeg -i source.mp4 -c:v libvpx-vp9 -b:v 0.33M -c:a libopus -b:a 96k \
+-filter:v scale=960x540 target.webm
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+@APP\ffmpeg -i DATA\A.mp4 -vf "subtitles=Font\Subtitles.srt" "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -i DATA\A.mp4 -vf "subtitles=Font\Subtitles.txt:force_style='Fontsize=20'" -c:a copy -c:v libx264 -crf 23 -preset veryfast "%CD%\Downloads\output.mp4"
+================================================
+How to extract audio stream from video
+@APP\ffmpeg -i DATA\A.mp4 -vn "%CD%\Downloads\output.mp4"
+================================================
+How to horizontally/vertically flip a video
+@APP\ffmpeg -i DATA\A.mp4 -vf "hflip" "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -i DATA\S.mp4 -vf "vflip" "%CD%\Downloads\output.mp4"
+================================================
+How to rotate a video
+@APP\ffmpeg -i DATA\B.mp4 -vf "rotate=angle=45*PI/180:fillcolor=red" "%CD%\Downloads\output.mp4"
+================================================
+How to overlay images/videos on a video
+@APP\ffmpeg  -i DATA\A.mp4 -i DATA\N.png -filter_complex "overlay=W/2-w/2:H-h-30" "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -i DATA\B.mp4 -i N.ico -filter_complex "overlay=t*90:H-h-30" -filter_complex "overlay=t*90:H-h-30" "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -i DATA\A.mp4 -i DATA\B.mp4  -i DATA\N.ico -filter_complex "[1]scale=360:200[out1]; [0][out1]overlay=W-w:H-h:shortest=1[out2]; [out2][2]overlay=20:20[out]" -map "[out]" -map "1:a" "%CD%\Downloads\output.mp4"
+================================================
+How to merge several videos in one
+@APP\ffmpeg -i DATA\A.mp4 -i DATA\B.mp4 -i DATA\S.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[v][a]" -map "[v]" -map "[a]" "%CD%\Downloads\output.mp4"
+================================================
+How to merge several videos with fade effect during video changes
+@APP\ffmpeg -i DATA\A.mp4 -i DATA\Over.mp4 -i DATA\B.mp4 -filter_complex "[0:v][1:v]xfade=transition=fade:duration=1:offset=9[vfade1]; [vfade1][2:v]xfade=transition=fade:duration=1:offset=13[vout]" -map "[vout]" "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -i DATA\A.mp4 -i DATA/Cover.mp4 -i DATA\B.mp4 -filter_complex "[0:v][1:v]xfade=transition=fade:duration=1:offset=9[vfade1]; [vfade1][2:v]xfade=transition=fade:duration=1:offset=13[vout]; [0:a][1:a]acrossfade=d=1[afade1]; [afade1][2:a]acrossfade=d=1[aout]" -map "[vout]" -map "[aout]" "%CD%\Downloads\output.mp4"
+================================================
+How to convert a Video to Black and White
+@APP\ffmpeg -i DATA\A.mp4 -vf "hue=s=0" "%CD%\Downloads\output.mp4"
+================================================
+How to extract images from the video
+@APP\ffmpeg -ss 00:00:05 -i DATA\A.mp4 -frames:v 1 "%CD%\Downloads\thumbnail.png"
+@APP\ffmpeg -i DATA\A.mp4 -frames:v 20 "%CD%\Downloads\thumbnail_%03d.png"
+================================================
+How to create video from multiple images
+@APP\ffmpeg -framerate 1/2 -i DATA\images/%03d.jpg -c:v libx264 -format yuv420p "%CD%\Downloads\output.mp4"
+@APP\ffmpeg -framerate 1/2 -i DATA\images/%03d.jpg -c:v libx264 -format yuv420p "%CD%\Downloads\output.mp4"
+================================================
+*********************************************************
+FFMPEG TOOL ALL COMMANDS
+===========================
+APP\FFMPEG -version ; -h
+------------------------------------------------------------------------
+APP\FFMPEG -i testfile.mp4 -c copy -f segment -segment_time 1200 testfile_piece_%02d.mp4
+------------------------------------------------------------------------
+APP\FFMPEG -i Lone_Ranger.mp4 Lone_Ranger.avi
+------------------------------------------------------------------------
+APP\FFMPEG -f gdigrab -framerate 30 -i desktop out.mp4
+APP\ffmpeg -f gdigrab -framerate 30 -i desktop output.mkv
+APP\ffmpeg -f gdigrab -framerate 30 -i title=Calculator output.mkv
+APP\ffmpeg -i output.mkv -acodec libfdk_aac -ab 128k -ac 2 -vcodec libx264 -preset slow -crf 22 -threads 0 final_video.mp4
+APP\ffmpeg -f gdigrab -framerate 6 -i desktop out.mpg
+APP\ffmpeg -f gdigrab -framerate 6 -i title=Calculator out.mpg
+APP\ffmpeg -f gdigrab -framerate 6 -offset_x 10 -offset_y 20 -video_size vga -i desktop out.mpg
+APP\ffmpeg -f gdigrab -framerate 30 -offset_x 10 -offset_y 20 -video_size 640x480 -show_region 1 -i desktop output.mkv
+------------------------------------------------------------------------
+Get Video File Information
+APP\FFMPEG -i video.flv -hide_banner
+APP\FFMPEG -i video.flv
+------------------------------------------------------------------------
+Split a video into images
+APP\FFMPEG -i video.flv image%d.jpg
+------------------------------------------------------------------------
+ Convert images into a video
+APP\FFMPEG -f image2 -i image%d.jpg imagestovideo.mpg
+------------------------------------------------------------------------
+4. Convert a video into mp3 format
+APP\FFMPEG -i video.flv -vn -ar 44100 -ac 2 -ab 192 -f mp3 audio.mp3
+------------------------------------------------------------------------
+5. Covert flv video file to mpg format
+APP\FFMPEG -i video.flv video.mpg
+------------------------------------------------------------------------
+6. Convert video into animated gif
+APP\FFMPEG -i video.flv animated.gif.mp4
+------------------------------------------------------------------------
+7. Convert mpg video file to flv
+APP\FFMPEG -i video.mpg -ab 26k -f flv video1.flv
+------------------------------------------------------------------------
+8. Convert avi video file to mpeg
+APP\FFMPEG -i video.avi -target pal-dvd -ps 2000000000 -aspect 16:9 video.mpeg
+------------------------------------------------------------------------
+9. Convert a video to CD or DVD format
+APP\FFMPEG -i video.mpg -target vcd vcd_video.mpg
+------------------------------------------------------------------------
+10. Extract audio from video file
+APP\FFMPEG -i video1.avi -vn -ar 44100 -ac 2 -ab 192 -f mp3 audio3.mp3
+------------------------------------------------------------------------
+11. Mix a video and audio together
+APP\FFMPEG -i audio.mp3 -i video.avi video_audio_mix.mpg
+------------------------------------------------------------------------
+12. Increase/Reduce Video Playback Speed
+APP\FFMPEG -i video.mpg -vf "setpts=0.5*PTS" highspeed.mpg
+APP\FFMPEG -i video.mpg -vf "setpts=4.0*PTS" lowerspeed.mpg -hide_banner
+-------------------------------------------------------------------------
+13. Compare/Test Video and Audio Quality
+APP\FFPLAY video1.mp4
+APP\FFPLAY audio_filename1.mp3
+-------------------------------------------------------------------------
+14. Add Photo or Banner to Audio
+APP\ffmpeg -loop 1 -i image.jpg -i Bryan\ Adams\ -\ Heaven.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+-------------------------------------------------------------------------
+15. Add subtitles to a Movie
+APP\ffmpeg -i video.mp4 -i subtitles.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast video-output.mkv
+-------------------------------------------------------------------------
+APP\ffmpeg -ss 00:01:00 -to 00:02:00 -i "$(youtube-dl -f best --get-url 'https://www.youtube.com/watch?v=dc7I-i7sPrg')" -c:v copy -c:a copy kiosk.mp4
+-------------------------------------------------------------------------
+APP\ffmpeg $(youtube-dl -g 'https://www.youtube.com/watch?v=oHg5SJYRHA0' | sed 's/^/-ss 00:05 -i /') -t 01:00 -c copy out.mkv
+-------------------------------------------------------------------------
+APP\ffmpeg -ss 00:01:00 -i $(youtube-dl -f best -g 'https://youtu.be/tnMFp53wrRg') -t 10 -c copy output.mp4
+-------------------------------------------------------------------------
+APP\ffmpeg -i movie.mp4 -ss 00:00:03 -t 00:00:08 -async 1 cut.mp4
+-------------------------------------------------------------------------
+APP\youtube-dl --external-downloader ffmpeg --external-downloader-args "-ss 00:01:00.00 -to 00:02:00.00" -f best "https://www.youtube.com/watch?v=dc7I-i7sPrg"
+-------------------------------------------------------------------------
+APP\ffmpeg -ss 60 -i $(youtube-dl -g -f 18 "https://youtu.be/oHg5SJYRHA0") -ss 60 -to 65 -c copy out.mp4
+-------------------------------------------------------------------------
+APP\ffmpeg -ss 60 -to 65 -i $(youtube-dl -g -f 18 "https://youtu.be/oHg5SJYRHA0") -c copy out.mp4
+-------------------------------------------------------------------------
+APP\ffmpeg -i $(youtube-dl -g -f 18 "https://youtu.be/oHg5SJYRHA0") -ss 60 -to 65 -c copy out.mp4
+-------------------------------------------------------------------------
+APP\ffmpeg -i video.mp4 video.avi
+APP\ffmpeg -i video.flv video.mpeg
+APP\ffmpeg -i input.webm -qscale 0 output.mp4
+-------------------------------------------------------------------------
+To check list of supported formats by FFmpeg, run:
+APP\ffmpeg -formats
+-------------------------------------------------------------------------
+3. Converting Video Files To Audio Files
+APP\ffmpeg -i input.mp4 -vn output.mp3
+APP\ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320 -f mp3 output.mp3
+-------------------------------------------------------------------------
+4. Change The Volume Of Audio Files
+APP\ffmpeg -i input.mp3 -af 'volume=0.5' output.mp3
+APP\ffmpeg -i input.mp3 -af 'volume=1.5' output.mp3
+-------------------------------------------------------------------------
+5. Change Resolution Of Video Files
+APP\ffmpeg -i input.mp4 -filter:v scale=1280:720 -c:a copy output.mp4
+APP\ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4
+APP\ffmpeg -i input.mp4 -filter:v scale=640:480 -c:a copy output.mp4
+APP\ffmpeg -i input.mp4 -s 640x480 -c:a copy output.mp4
+-------------------------------------------------------------------------
+6. Compressing Video Files
+APP\ffmpeg -i input.mp4 -vf scale=1280:-1 -c:v libx264 -preset veryslow -crf 24 output.mp4
+-------------------------------------------------------------------------
+7. Compressing Audio Files
+APP\ffmpeg -i input.mp3 -ab 128 output.mp3  (96kbps ; 112kbps ; 128kbps ; 160kbps ; 192kbps ; 256kbps ; 320kbps)
+-------------------------------------------------------------------------   
+8. Removing Audio Stream From A Video File
+APP\ffmpeg -i input.mp4 -an output.mp4
+-------------------------------------------------------------------------
+9. Removing Video Stream From A Media File
+APP\ffmpeg -i input.mp4 -vn output.mp3
+APP\ffmpeg -i input.mp4 -vn -ab 320 output.mp3
+-------------------------------------------------------------------------
+10. Extracting Images From The Video
+APP\ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png
+-------------------------------------------------------------------------
+11. Cropping Videos
+APP\ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+APP\ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4
+-------------------------------------------------------------------------
+12. Convert A Specific Portion Of A Video
+APP\ffmpeg -i input.mp4 -t 10 output.avi
+-------------------------------------------------------------------------
+13. Set The Aspect Ratio To Video
+APP\ffmpeg -i input.mp4 -aspect 16:9 output.mp4
+    16:9
+    4:3
+    16:10
+    5:4
+    2:21:1
+    2:35:1
+    2:39:1
+--------------------------------------------------------------------------
+14. Adding Poster Image To Media Files
+APP\ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+--------------------------------------------------------------------------
+15. Trim A Media File Using Start And Stop Times
+APP\ffmpeg -i input.mp4 -ss 00:00:50 -codec copy -t 50 output.mp4
+Here,
+    --s - Indicates the starting time of the video clip. In our example, starting time is the 50th second.
+    -t - Indicates the total time duration.
+This is very helpful when you want to cut a part from an audio or video file using starting and ending time.
+Similarly, we can trim down the audio file like below.
+APP\ffmpeg -i audio.mp3 -ss 00:01:54 -to 00:06:53 -c copy output.mp3
+16. Split Audio/Video Files Into Multiple Parts
+Some websites will allow you to upload only a specific size of video. For example, Whatsapp will allow only 15 seconds videos to set as status message for users in India. In such cases, you can split the large video files into multiple smaller parts like below.
+APP\ffmpeg -i input.mp4 -t 00:00:30 -c copy part1.mp4 -ss 00:00:30 -codec copy part2.mp4
+Here, -t 00:00:30 indicates a part that is created from the start of the video to the 30th second of video. -ss 00:00:30 shows the starting time stamp for the next part of video. It means that the 2nd part will start from the 30th second and will continue up to the end of the original video file.
+Recommended Download - Free Guide: "How to Start Your Own Successful Podcast"
+17. Merge Audio And Video Files
+To merge an audio file and a video file with audio re-encoding, run:
+APP\ffmpeg -i inputvideo.mp4 -i inputaudio.mp3 -c:v copy -c:a aac output.mp4
+The above command will merge inputvideo.mp4 file with inputaudio.mp3 into output.mp4. It will also re-encode the audio file.
+Here, I assume the audio and video files are same length and the video file doesn't has any audio stream.
+If your audio or video stream is longer, you can add the -shortest option so that ffmpeg will stop encoding once one file ends.
+If your input video already contains audio, and you want to replace it, you need to tell ffmpeg which audio stream to take as shown below:
+APP\ffmpeg -i inputvideo.mp4 -i inputaudio.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 output.mp4
+The -map option makes ffmpeg only use the first video stream from the first input and the first audio stream from the second input for the output file.
+If you want to merge an audio file with a video file. without audio re-encoding, simply copy both files like below:
+APP\ffmpeg -i inputvideo.mp4 -i inputaudio.mp3 -c copy output.mkv
+18. Joining Or Merging Multiple Audio/Video Parts Into One
+FFmpeg will also join the multiple video parts and create a single video file.
+Create join.txt file that contains the exact paths of the files that you want to join. All files should be same format (same codec). The path name of all files should be mentioned one by one like below.
+file /home/sk/myvideos/part1.mp4
+file /home/sk/myvideos/part2.mp4
+file /home/sk/myvideos/part3.mp4
+file /home/sk/myvideos/part4.mp4
+Now, join all files using command:
+APP\ffmpeg -f concat -i join.txt -c copy output.mp4
+If you get an error something like below;
+[concat @ 0x555fed174cc0] Unsafe file name '/path/to/mp4'
+join.txt: Operation not permitted
+Add "-safe 0":
+APP\ffmpeg -f concat -safe 0 -i join.txt -c copy output.mp4
+The above command will join part1.mp4, part2.mp4, part3.mp4, and part4.mp4 files into a single file called "output.mp4".
+
+Alternatively, you can use the following one-liner command to join all files in a directory. Go to the directory where you have files and run the following command to join the files named audio1.mp3, audio2,mp3 and audio3.mp3 into output.mp3.
+
+$ ffmpeg -i "concat:audio1.mp3|audio2.mp3|audio3.mp3" -c copy output.mp3
+
+19. Add Subtitles To A Video File
+
+We can also add subtitles to a video file using FFmpeg. Download the correct subtitle for your video and add it your video as shown below.
+
+$ fmpeg -i input.mp4 -i subtitle.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast output.mp4
+
+20. Preview Or Test Video Or Audio Files
+
+You might want to preview to verify or test whether the output file has been properly transcoded or not. To do so, you can play it from your Terminal with command:
+
+$ ffplay video.mp4
+-------------------------------------------------------------
+19 FFmpeg Commands For All Needs
+
+FFmpeg is a multiplatform, open-source library to record, convert and stream video and audio files. Created in 2000, it is a powerful command-line tool that runs on Linux, Windows and Mac operating systems. FFmpeg is currently used by many websites and programs, including YouTube and VLC Media Player, and is published under the GNU Lesser General Public License 2.1+.
+Table of Contents show
+
+The program and its source code can be downloaded here. Please refer to the official documentation if you need any help to install FFmpeg.
+
+The commands contained in this guide describes how to perform various tasks as such as video files conversion, audio file sound extraction, encoding files for iPod or PSP, converting a video to a gif file, and more.
+Get File Information From a Video File
+
+You can easily obtain a lot of information on a given video file with the following command line instruction:
+
+ffmpeg -i video.avi
+
+Convert Images To a Video Sequence
+
+This command will transform all the images from the current directory (named image1.jpg, image2.jpg, etc…) to a video file named video.mpg.
+
+ffmpeg -f image2 -i image%d.jpg video.mpg
+
+Convert a Video to X Images
+
+This command will generate imagess named image1.jpg, image2.jpg, etc, from a given video file. The following image formats are available: PGM, PPM, PAM, PGMYUV, JPEG, GIF, PNG, TIFF, SGI.
+
+ffmpeg -i video.mpg image%d.jpg
+
+Crop a Video File
+
+Cropping is a very common operation in video editing. FFmpeg provides a crop filter for this specific purpose:
+
+ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4
+
+The options are as follows:
+
+    out_w is the width of the output rectangle
+    out_h is the height of the output rectangle
+    x and y specify the top left corner of the output rectangle
+    output.mp4 is the output file
+
+Resize a Video
+
+Using the -vf scale filter, it is possible to resize videos to a desired size:
+
+ffmpeg -i input.avi -vf scale=320:240 output.avi
+
+The same works with images as well:
+
+ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
+
+Extract a Portion of a Video
+
+Another very common operation on video files is to extract a specific portion of a given video. This can be done super easily:
+
+ffmpeg -ss 00:00:30 -i orginalfile.mpg -t 00:00:05 -vcodec copy -acodec copy newfile.mpg
+
+In the example above, we are cutting out a part starting at 00:00:30 into the original file with a 5 seconds length. -ss indicates the starting time, and -t indicates the duration.
+Encode a Video Sequence for the iPod/iPhone
+
+You can easily convert a video for iPhones and older iPods using this command:
+
+ffmpeg -i source_video.avi input -acodec aac -ab 128kb -vcodec mpeg4 -b 1200kb -mbd 2 -flags +4mv+trell -aic 2 -cmp 2 -subcmp 2 -s 320x180 -title X final_video.mp4
+
+Explanations :
+
+    Source : source_video.avi
+    Audio codec : aac
+    Audio bitrate : 128kb/s
+    Video codec : mpeg4
+    Video bitrate : 1200kb/s
+    Video size : 320px par 180px
+    Generated video : final_video.mp4
+
+Encode a Video for Sony PSP
+
+Same goes with Sony PSP: The command line below takes a source video file and creates an output file compatible with Sony PSP.
+
+ffmpeg -i source_video.avi -b 300 -s 320x240 -vcodec xvid -ab 32 -ar 24000 -acodec aac final_video.mp4
+
+Explanations :
+
+    Source : source_video.avi
+    Audio codec : aac
+    Audio bitrate : 32kb/s
+    Video codec : xvid
+    Video bitrate : 1200kb/s
+    Video size : 320px par 180px
+    Generated video : final_video.mp4
+
+Extract Sound From a Video, And Save It in Mp3 Format
+
+Creating an audio file from a video is an easy task:
+
+ffmpeg -i source_video.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 sound.mp3
+
+Explanations :
+
+    Source video : source_video.avi
+    Audio bitrate : 192kb/s
+    output: mp3 format
+    Generated sound : sound.mp3
+
+Convert a Wav File to Mp3
+
+FFmpeg isn’t only for videos, there’s a lot you can do with audio files as well. This example will convert a .wav file to mp3 format.
+
+ffmpeg -i input_sound.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 output_sound.mp3
+
+Convert .avi Video to .mpg
+
+Coverting video files from a format to another is extremely simple. Here, a .avi video is converted to .mpg:
+
+ffmpeg -i original_video.avi final_video.mpg
+
+Convert .mpg to .avi
+
+And vice-versa. This command convert videos to a specified file format:
+
+ffmpeg -i original_video.mpg final_video.avi
+
+Convert .avi to .flv
+
+.flv is a very popular format for web videos. This example converts a .avi file into .flv, while specifying various parameters as such as the display size.
+
+ffmpeg -i original_video.avi -ab 56 -ar 44100 -b 200 -r 15 -s 320x240 -f flv final_video.flv
+
+Convert .avi to .dv
+
+Another audio/video format conversion. This command will convert a .avi file to .dv:
+
+ffmpeg -i original_video.avi -s pal -r pal -aspect 4:3 -ar 48000 -ac 2 final_video.dv
+
+This can be used as well:
+
+ffmpeg -i original_video.avi -target pal-dv final_video.dv
+
+Convert .avi to mpeg for DVD Players
+
+If you have a video you’d like to watch on a DVD player, here is how to properly encode it:
+
+ffmpeg -i source_video.avi -target pal-dvd -ps 2000000000 -aspect 16:9 final_video.mpeg
+
+Explanations :
+
+    target pal-dvd : Output format
+    -ps 2000000000: Maximum size for the output file, in bits (here, 2 Gb)
+    -aspect 16:9: Widescreen
+
+Compress .avi video
+
+You can compress videos in order to save space on your hard drive. Note the use of the -s parameter to resize the output file:
+
+ffmpeg -i original_video.avi -s 320x240 -vcodec msmpeg4v2 final_video.avi
+
+Compress Ogg Theora to mpeg DVD
+
+More unusual formats, as such as Ogg Theora, can also be converted. Note the use of -vcodec and -acodec to specify the video and ausio codecs to be used:
+
+ffmpeg -i input.ogm -s 720x576 -vcodec mpeg2video -acodec mp3 output.mpg
+
+Compress .avi to SVCD mpeg2
+
+mpeg-2 is the standard format for SVCD and CVD (which you can burn on CDR media and playback on a TV with a SVCD-CVD compatible DVD player) and DVD.
+
+Depending of your player format, you have to use a different command. In the US, NTSC is the standard:
+
+ffmpeg -i original_video.avi -target ntsc-svcd final_video.mpg
+
+If your player is in PAL format, you should use the following instead:
+
+ffmpeg -i original_video.avi -target pal-svcd final_video.mpg
+
+Compress .avi to VCD mpeg2
+
+Video CDs are a quick and cheap way to watch a video from your computer on your TV. Converting a video file to VCD is very easy.
+
+The command to use depends on your player format. Let’s start with NTSC, the standard in North America:
+
+ffmpeg -i original_video.avi -target ntsc-vcd final_video.mpg
+
+The following is for PAL players, used mainly in Europe:
+
+ffmpeg -i original_video.avi -target pal-vcd final_video.mpg
+
+Convert .avi to Animated Gif (Uncompressed)
+
+You can easily create an animated gif from a video file:
+
+ffmpeg -i original_video.avi animated_gif.gif
+
+Mix a Video With a Sound File
+
+If you have an audio and video file, you can mix them together:
+
+ffmpeg -i sound.wav -i original_video.avi final_video.mpg
+
+Add Text Subtitles to a Video
+
+If you have subtitles for a movie or documentary, it is possible to use FFmpeg to insert them into your video file:
+
+ffmpeg -i input.mp4 -i subtitles.srt -c copy -c:s mov_text output.mp4
+
+Image Overlay on a Video
+
+Let’s finish this round-up with an advanced command. Here we are applying an overlay image to an existing video:
+
+ffmpeg -i input.mp4 -i image.png -filter_complex "[0:v][1:v] overlay=25:25:enable='between(t,0,20)'" -pix_fmt yuv420p -c:a copy output.mp4
+
+Some explanations:
+
+    overlay=25:25: The image will be positioned 25px to the right and 25px down, originating from the top left corner (0:0).
+    enable='between(t,0,20)': The overlay image will be shown from 00:00:00 to 00:00:20
+---------------------------------------------------------------------------
+Useful FFmpeg Commands
+
+FFmpeg supports all popular audio and video formats. Or you can running the command ./ffmpeg -formats to get a list of every format that is supported by your FFmpeg installation. If you are just getting started, here are some commands that will give you a good idea of the capabilities of this tool.
+1. Cut video file into a smaller clip
+
+You can use the time offset parameter (-ss) to specify the start time stamp in HH:MM:SS.ms format while the -t parameter is for specifying the actual duration of the clip in seconds.
+
+ffmpeg -i input.mp4 -ss 00:00:50.0 -codec copy -t 20 output.mp4
+2. Split a video into multiple parts
+
+If you want to split a large video into multiple smaller clips without re-encoding, ffmpeg can help. This command will split the source video into 2 parts - one ending at 50s from the start and the other beginning at 50s and ending at the end of the input video.
+
+ffmpeg -i video.mp4 -t 00:00:50 -c copy small-1.mp4 -ss 00:00:50 -codec copy small-2.mp4
+3. Convert video from one format to another
+
+You can use the -vcodec parameter to specify the encoding format to be used for the output video. Encoding a video takes time but you can speed up the process by forcing a preset though it would degrade the quality of the output video.
+
+ffmpeg -i youtube.flv -c:v libx264 filename.mp4
+
+ffmpeg -i video.wmv -c:v libx264 -preset ultrafast video.mp4
+4. Join (concatenate) video files
+
+If you have multiple audio or video files encoded with the same codecs, you can join them into a single file using FFmpeg. Create an input file with a list of all source files that you wish to concatenate and then run this command.
+
+ffmpeg -f concat -i file-list.txt -c copy output.mp4
+5. Mute a video (Remove the audio component)
+
+Use the -an parameter to disable the audio portion of a video stream.
+
+ffmpeg -i video.mp4 -an mute-video.mp4
+6. Extract the audio from video
+
+The -vn switch extracts the audio portion from a video and we are using the -ab switch to save the audio as a 256kbps MP3 audio file.
+
+ffmpeg -i video.mp4 -vn -ab 256 audio.mp3
+7. Convert a video into an animated GIF
+
+FFmpeg is an excellent tool for converting videos into animated GIFs and the quality isn’t bad either. Use the scale filter to specify the width of the GIF, the -t parameter specific the duration while -r specifies the frame rate (fps).
+
+ffmpeg -i video.mp4 -vf scale=500:-1 -t 10 -r 10 image.gif
+8. Extract image frames from a video
+
+This command will extract the video frame at the 15s mark and saves it as a 800px wide JPEG image. You can also use the -s switch (like -s 400x300) to specify the exact dimensions of the image file though it will probably create a stretched image if the image size doesn’t follow the aspect ratio of the original video file.
+
+ffmpeg -ss 00:00:15 -i video.mp4 -vf scale=800:-1 -vframes 1 image.jpg
+9. Convert Video into Images
+
+You can use FFmpeg to automatically extract image frames from a video every ‘n’ seconds and the images are saved in a sequence. This command saves image frames from the video after every 4 seconds.
+
+ffmpeg -i movie.mp4 -r 0.25 frames_%04d.png
+10. Merge an audio and video file
+
+You can also specify the -shortest switch to finish the encoding when the shortest clip ends.
+
+ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental output.mp4
+
+ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental -shortest output.mp4
+11. Resize a video
+
+Use the size (-s) switch with ffmpeg to resize a video while maintaining the aspect ratio.
+
+ffmpeg -i input.mp4 -s 480x320 -c:a copy output.mp4
+12. Create video slideshow from images
+
+This command creates a video slideshow using a series of images that are named as img001.png, img002.png, etc. Each image will have a duration of 5 seconds (-r 1/5).
+
+ffmpeg -r 1/5 -i img%03d.png -c:v libx264 -r 30 -pix_fmt yuv420p slideshow.mp4
+13. Add a poster image to audio
+
+You can add a cover image to an audio file and the length of the output video will be the same as that of the input audio stream. This may come handy for uploading MP3s to YouTube.
+
+ffmpeg -loop 1 -i image.jpg -i audio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+14. Convert a single image into a video
+
+Use the -t parameter to specify the duration of the video.
+
+ffmpeg -loop 1 -i image.png -c:v libx264 -t 30 -pix_fmt yuv420p video.mp4
+15. Add subtitles to a movie
+
+This will take the subtitles from the .srt file. FFmpeg can decode all the common subtitle formats.
+
+ffmpeg -i movie.mp4 -i subtitles.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast output.mkv
+16. Crop an audio file
+
+This will create a 30 second audio file starting at 90 seconds from the original audio file without transcoding.
+
+ffmpeg -ss 00:01:30 -t 30 -acodec copy -i inputfile.mp3 outputfile.mp3
+17. Change the audio volume
+
+You can use the volume filter to alter the volume of a media file using FFmpeg. This command will half the volume of the audio file.
+
+ffmpeg -i input.wav -af 'volume=0.5' output.wav
+18. Rotate a video
+
+This command will rotate a video clip 90° clockwise. You can set transpose to 2 to rotate the video 90° anti-clockwise.
+
+ffmpeg -i input.mp4 -filter:v 'transpose=1' rotated-video.mp4
+
+This will rotate the video 180° counter-clockwise.
+
+ffmpeg -i input.mp4 -filter:v 'transpose=2,transpose=2' rotated-video.mp4
+19. Speed up or Slow down the video
+
+You can change the speed of your video using the setpts (set presentation time stamp) filter of FFmpeg. This command will make the video 8x (1/8) faster or use setpts=4*PTS to make the video 4x slower.
+
+ffmpeg -i input.mp4 -filter:v "setpts=0.125*PTS" output.mp4
+20. Speed up or Slow down the audio
+
+For changing the speed of audio, use the atempo audio filter. This command will double the speed of audio. You can use any value between 0.5 and 2.0 for audio.
+
+ffmpeg -i input.mkv -filter:a "atempo=2.0" -vn output.mkv
+
+Stack Exchange has a good overview to get you started with FFmpeg. You should also check out the official documentation at ffmpeg.org or the wiki at trac.ffmpeg.org to know about all the possible things you can do with FFmpeg.
+--------------------------------------------------------------------------
+1. FFmpeg Get Video Info
+
+First, you can easily get the information of a given media file (say input.mp4) using FFmpeg. Normally it will require to specify the input file and output file, but in this case, the output file can be omitted since we only need to get some basic information. You can run the following command:
+
+ffmpeg -i input.mp4 -hide_banner
+
+The "hide_banner" flag helps hide FFmpeg banners and other details, and only shows the media file information.
+2. Preview or Test Video or Audio Files
+
+FFmpeg framework consists of FFmpeg itself, ffprobe, and ffplay, the FFmpeg library-based media player. If you want to preview or test a media file before or after dealing with it, you can play it with ffplay by performing the following command:
+
+ffplay input.mp4
+
+Add "-fs" to the command to enter fullscreen mode.
+3. FFmpeg MOV to MP4 (Convert Video/Audio to Another Format)
+
+FFmpeg is extremely useful to convert your video file to another format. For example, to convert MOV to MP4 with FFmpeg, run the command below.
+
+ffmpeg -i input.mov output.mp4
+
+Similarly, you can transcode audio files with FFmpeg by specifying the output format. For example, FFmpeg will convert WAV to MP3 with the following command.
+
+ffmpeg -i input.wav -vn -ar 44100 -ac 2 -b:a 192k output.mp3
+4. FFmpeg Extract Audio (Convert Video to Audio)
+
+In addition to converting the video/audio file to a different format, FFmpeg can also remove the video part or the audio part separately. The following command will remove the video stream from a video file, letting you extract audio from video.
+
+ffmpeg -i input.mp4 -vn output.mp3
+5. FFmpeg Remove Audio
+
+Also, you can remove the audio stream and keep the video stream with FFmpeg using the command below. You can also set the output format (MP4 in this case) as other supported formats.
+
+ffmpeg -i input.mp4 -an mute-output.mp4
+6. Convert a Specific Portion of a Video
+
+In addition to converting the format of the entire video, FFmpeg also allows you to convert a specific part of the video or audio format when needed. In this situation, you need to use the -t value to specify the time. For example, the following command will convert the first 10 seconds of the input.mp4 to MKV format. Note you can also specify the time in hh.mm.ss format.
+
+ffmpeg -i input.mp4 -t 10 output.mkv
+7. FFmpeg Trim Video
+
+FFmpeg can also easily help with trimming video and audio files. Use the -ss value to set the start time of the clip, and -to value to set the end time. The -c value is to set the codec. Similarly, you can also use the -t value in the example above to set the duration of the clip.
+
+ffmpeg -i input.mp4 -ss 00:01:54 -to 00:06:53 -c copy output.mp4
+8. Cropping Videos
+
+Use the command below to crop the frame in any dimension you want. In this case, -filter:v indicates the filter is for the video. Crop specifies the filter you need here is the crop filter. "w:h:x:y" represents the width, height, and position of the frame respectively.
+
+ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+9. FFmpeg Resize Video
+
+The following command will resize the video to a desired size. -vf in the command below is an alias for -filter:v in the example above.
+
+ffmpeg -i input.mp4 -vf scale=1920:1080 output.mp4
+10. FFmpeg Combine Audio and Video
+
+If you have an audio and a video file, you can mix your video with the audio using the following command. Note you have to use the container format compatible with the coding formats.
+
+ffmpeg -i audio.mp3 -i video.mp4 video_audio_mix.mkv
+11. FFmpeg Concatenate Videos
+
+FFmpeg will serve as a video merger. If you have several video clips encoded with the same codec, you can merge or concatenate these videos into one. Just create a .txt file with a list of all source files that you wish to concatenate, then run the command below.
+
+ffmpeg -f concat -i file-list.txt -c copy output.mp4
+12. FFmpeg Rotate Video
+
+You can easily rotate a video clockwise and counter-clockwise using FFmpeg, as well as vertically and horizontally flip a video. The feature we use in this case is "Transpose". The following command will rotate the input video by 90 degrees clockwise.
+
+ffmpeg -i input.mp4 -vf "transpose=1" output.mp4
+
+The available parameters for transpose are 0, 1, 2, and 3.
+
+    0 - Rotate by 90 degrees counter-clockwise and flip vertically (default value).
+    1 - Rotate by 90 degrees clockwise.
+    2 - Rotate by 90 degrees counter-clockwise.
+    3 - Rotate by 90 degrees clockwise and flip vertically.
+
+Note that you will need to mention the transpose parameter two times like below to rotate videos by 180 degrees clockwise.
+
+ffmpeg -i input.mp4 -vf "transpose=2,transpose=2" output.mp4
+13. FFmpeg Speed Up Video
+
+FFmpeg helps change the playback speed of the video. You can speed up or slow down a video per your needs. For example, the following command will double the speed of the video. You can set the value according to your needs.
+
+ffmpeg -i input.mp4 -vf "setpts=0.5*PTS" output.mp4
+14. FFmpeg Compress Video
+
+Compressing the video with FFmpeg will reduce the file size and save storage space. Run the following command to compress the input video.
+
+ffmpeg -i input.mp4 -vf scale=1280:-1 -c:v libx264 -preset veryslow -crf 24 output.mp4
+15. Zoom In and Zoom Out Videos
+
+You can apply zoom and pan effect to the given video with the zoompan filter in FFmpeg. The following command will zoom in up to 1.5x and pan at the center of the picture.
+
+zoompan=z='min(zoom+0.0015,1.5)':d=700:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'
+
+    zoom, z - Set the zoom expression. Range is 1-10. Default is 1.
+    d - Set the duration expression in number of frames. Default is 90.
+    x, y - Set the x and y expression. Default is 0.
+    in_w, iw, in_h, ih - Input width/height.
+
+16. FFmpeg Loop
+
+To loop a video with FFmpeg, you'll need to use the loop filter. For example, the following command will loop the input MP4 video for three times. The default of the number of loops is 0, meaning no loop. Use -1 for an infinite loop.
+
+ffmpeg -stream_loop 2 -i input.mp4 -c copy output.mp4
+17. Set Frames Per Second (FPS)
+
+FFmpeg is also useful to change some parameters, including FPS and GOP. You can simply change the FPS for different uses without changing other parameters. Type and run the command below, and FFmpeg will change the original FPS to the value you set.
+
+ffmpeg -i input.mp4 -vf "fps=30" output.mp4
+18. Set Group of Pictures (GOP)
+
+GOP means group of pictures, which is the distance between two keyframes. You can set the -g value as you want. Note that forcing too many keyframes is very harmful for the lookahead algorithms of certain encoders.
+
+ffmpeg -i input.mp4 -g 300 output.mp4
+19. Copy Metadata
+
+You can also copy the metadata of a source media file with the following FFmpeg command. Note it might not copy all the metadata correctly since some videos store custom metadata.
+
+ffmpeg -i input.mov -map_metadata 0 -movflags use_metadata_tags output.mp4
+20. Add Subtitle to Video
+
+FFmpeg can add a separate subtitle file to a video with the following command. Note to choose a compatible container format for the output video.
+
+ffmpeg -i input.mp4 -i subtitle.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast video-output.mkv
+21. Keep Original Encoding
+
+Sometimes you may just want to copy the original encoding. The command below will create a duplicate copy of the input video. The "-c copy" parameter makes ffmpeg omit the decoding and encoding step for the specified stream, so it does only muxing and demuxing. It is useful for only changing the container format or modifying container-level metadata.
+
+ffmpeg -i input.mp4 -c copy output.mkv
+22. Create Animated GIF
+
+From here I will introduce some FFmpeg features surrounding image files.
+
+First let's see how to create an animated GIF from a video using FFmpeg. The basic formula is as simple as shown below:
+
+ffmpeg -i input.mp4 output.gif
+
+You can also add some parameters to customize the output GIF image:
+
+ffmpeg -ss 00:00:20 -i input.mp4 -to 10 -r 10 -vf scale=200:-1 output.gif
+
+    -ss: indicates the start point of the GIF
+    -to : indicates the end position of the GIF
+    -r : means frame rate
+    -vf scale: is to scale the GIF image in the desired size
+
+23. FFmpeg Resize Image
+
+Similar to resizing video in the above example, you can also use FFmpeg to resize images. The following command will resize the image to 1920:1080. You can set this value to any of your desired sizes.
+
+ffmpeg -i input.png -vf "scale=1920:1080" output.png
+24. FFmpeg Images to Video
+
+FFmpeg can turn a series of images to a video. This is very helpful when you want to make a slideshow. For example, the following command will create a slideshow with a series of images named as img001.png, img002.png, etc. -r 1/5 indicates that each image will have a duration of 5 seconds.
+
+ffmpeg -r 1/5 -i img%03d.png -c:v libx264 -r 30 -pix_fmt yuv420p output.mp4
+25. Convert a Single Image Into a Video
+
+Since video is composed of frames of images, it is possible to convert a single image into a video file with FFmpeg. Use the -t parameter to specify the duration of the video. You can also add other parameters as in the following command.
+
+ffmpeg -loop 1 -i input.png -c:v libx264 -t 30 -pix_fmt yuv420p video.mp4
+26. FFmpeg Extract Frames
+
+Instead of converting a single image or a series of images to a video, you can also extract frames from a video. The following command will extract 1 frame every 1 second from your input video, and the exacted images will be named with 3 digits like 001.png, 002.png, etc. You can also add other parameters like -ss and -t.
+
+ffmpeg -i input.mp4 -r 1 image-%03d.png
+
+Refer to this guide on how to extract frames from video with FFmpeg for detailed information.
+27. Change the Volume of Audio Files
+
+The following are some commonly used FFmpeg commands for audio files.
+
+One of the most commonly used is to change the volume of the audio. FFmpeg comes when the volume of the background music is too high or too low. You'll need the "volume filter" option. For example, the command below will decrease the audio volume by half. Of course, you can also set the value according to your needs.
+
+ffmpeg -i input.mp3 -af 'volume=0.5' output.mp3
+28. Compressing Audio Files
+
+Just like compressing a video, you can also compress an audio to reduce the file size. The -ab flag of FFmpeg will specify the bit rate for the target audio and save you some storage space. The available audio bitrates are 96kbps, 112kbps, 128kbps, 160kbps, 192kbps, 256kbps, and 320kbps. Simply use a smaller value than the source file uses to compress the audio.
+
+ffmpeg -i input.mp3 -ab 128 output.mp3
+29. Increase/Decrease Audio Playback Speed
+
+Similarly, we can also use FFmpeg to speed up or slow down the playback speed of the audio. In this case, we are going to use the "atempo" audio filter. Any value between 0.5 and 2.0 can be used for audio. For example, the command below will double the speed of audio.
+
+ffmpeg -i input.mp3 -filter:a "atempo=2.0" -vn output.mp3
+30. Add an Image to Audio
+
+Have you ever tried to upload an MP3 audio to YouTube but failed? If the answer is yes, adding an image to the audio with FFmpeg may help with this situation. The following command will convert your audio to an MP4 video with a given image. You can also choose another compatible container based on the coding format of your audio.
+
+ffmpeg -loop 1 -i image.jpg -i input.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+31. Getting Help
+
+You can always use -h to print help about a specific item in the ff* tools (including FFmpeg).
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video Size Reduse 
+ffmpeg -i input_video.mp4 -vf "scale=640:360" -c:a copy output_video.mp4
+ffmpeg -i 1.mp4 -vf "scale=360:640" -c:a copy output_video.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video Mute Audio (Whitout Audio File)
+ffmpeg -i input_video.mp4 -c copy -an output_video.mp4
+ffmpeg -i 2.mp4 -c copy -an output_video.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Audio file cut In Time (21Sec) 
+ffmpeg -i input_audio.mp3 -t 21 -c:a copy output_cut_audio.mp3
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video+Another Audio Combin
+ffmpeg -i 2.mp4 -i 2.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
+ffmpeg -i 2.mp4 -i 2.mp3 -c:v copy -c:a aac -strict experimental -shortest output_combined.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video+Logo PNG
+ffmpeg.exe -i video.mp4 -i logo.png -filter_complex “overlay=X:Y” output.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=main_w-overlay_w-10:10" -codec:a copy out.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[1:v]scale=140:140[logo];[0:v][logo]overlay=360:10:format=auto,setsar=1" -c:a copy output_video.mp4
+
+ffmpeg -i 2.mp4 -i F.png -filter_complex "overlay=10:10" output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "overlay=10:10" -c:v copy -c:a copy output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:10[scaled];[scaled]scale=100:100[logo];[0:v][logo]overlay=W-w-10:10" -c:a copy output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10[outv]" -map "[outv]" -map 0:a output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10[outv]" -map "[outv]" -c:a copy output_video.mp4
+
+
+ffmpeg -i input_video.mp4 -i logo.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[1:v]scale=50:50[logo];[0:v][logo]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v] overlay=25:25:enable='between(t,0,21)'" -pix_fmt yuv420p -c:a copy output.mp4
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Ffmpeg Video+Video
+ffmpeg -i 2.mp4 -i 1.mp4 -filter_complex "[0:v][1:v]scale=100:100 [ovrl]; [ovrl]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ffmpeg -loop 1 -i 2.jpg -i BALA.mp3 -shortest out.mp4
+ffmpeg -loop 1 -i 2.jpg -i BALA.mp3 -filter_complex "concat=n=1" -shortest -c:v libx264 -pix_fmt yuv420p -c:a aac video.mp4
+ffmpeg -y -loop 1 -t 1 -i 1.jpg -loop 1 -t 1 -i 2.jpg -loop 1 -t 4 -i 3.jpg -loop 1 -t 1 -i 4.jpg -i BALA.mp3 -filter_complex "concat=n=4" -shortest -c:v libx264 -pix_fmt yuv420p -c:a aac video.mp4
+ffmpeg -i input_video.mp4 -i input_image.jpg -filter_complex "[0:v]first_video_style_filter[v1];[1:v]second_image_style_filter[v2];[v1][v2]overlay=main_w-overlay_w-10:main_h-overlay_h-10[outv]" -map "[outv]" -c:v libx264 -crf 23 -preset medium -c:a aac -strict experimental -b:a 192k -shortest output_combined.mp4
+ffmpeg -framerate 30 -start_number 1 -i image%d.jpg -i input_video.mp4 -filter_complex "[1:v][0:v]overlay=10:10:enable='between(t,1,5)'[v1];[v1]fade=in:0:30,fade=out:25:30[vout]" -map "[vout]" -c:v libx264 -crf 23 -preset medium -c:a aac -strict experimental -b:a 192k output_combined.mp4
+ffmpeg -framerate 30 -start_number 1 -i image%d.jpg -i input_video.mp4 -filter_complex "[1:v][0:v]overlay=10:10:enable='between(t,1,5)'[v1];[v1]drawtext=fontfile=/path/to/your/font.ttf:text='*':fontsize=100:fontcolor=yellow:x=50:y=50:enable='between(t,1,5)'[v2];[v2]fade=in:0:30,fade=out:25:30[vout]" -map "[vout]" -c:v libx264 -crf 23 -preset medium -c:a aac -strict experimental -b:a 192k output_combined.mp4
+ffmpeg -i background_video.mp4 -i overlay_video.mp4 -filter_complex "[0:v][1:v]overlay=10:10[outv]" -map "[outv]" -c:v libx264 -crf 23 -preset medium -c:a aac -strict experimental -b:a 192k output_combined.mp4
+ffmpeg -i background_video.mp4 -i video1.mp4 -i video2.mp4 -filter_complex "[0:v][1:v]overlay=10:10[bg];[bg][2:v]overlay=50:50[outv]" -map "[outv]" -c:v libx264 -crf 23 -preset medium -c:a aac -strict experimental -b:a 192k output_combined.mp4
+ffmpeg -i input_video.mp4 -i background_image.jpg -filter_complex "[0:v]chromakey=0x00FF00:0.1:0.1[ckout];[ckout][1:v]overlay[outv]" -map "[outv]" -c:v libx264 -crf 23 -preset medium -c:a aac -strict experimental -b:a 192k output_video_with_changed_background.mp4
+ffmpeg -framerate 1/3 -pattern_type glob -i 'images/*.jpg' -i background_music.mp3 -filter_complex "[0:v]fade=t=in:st=0:d=2, fade=t=out:st=duration-2:d=2[v];[v]scale=1920:1080[vout]" -map "[vout]" -map 1:a -c:v libx264 -pix_fmt yuv420p -c:a aac -strict experimental -b:a 192k -shortest output_wedding_video.mp4
+ffmpeg -i video1.mp4 -i video2.mp4 -i background_image.jpg -i background_music.mp3 -filter_complex "[0:v]fade=out:st=5:d=2[v1];[1:v]fade=in:st=0:d=2,fade=out:st=5:d=2[v2];[2:v]fade=in:st=0:d=2,fade=out:st=5:d=2[v3];[v1][v2][v3]concat=n=3:v=1[outv]" -map "[outv]" -map 3:a -c:v libx264 -pix_fmt yuv420p -c:a aac -strict experimental -b:a 192k output_wedding_video.mp4
+ffmpeg -i BALA.mp3 -i F.png -c copy -map 0 -map 1 output.mp3
+ffmpeg -i BALA.mp3 -f ffmetadata FN.txt
+-----------------------------------------------------------------
+files=(*.mp3)
+for i in "${!files[@]}"; do 
+ index=$((i+1))
+ input=track_$index.mp3
+ ffmpeg -i $input -i album_cover.png -c copy -map 0 -map 1 output_$index.mp3
+done
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+ffmpeg -i input_video.mp4 -vf "scale=640:360" -c:a copy output_video.mp4
+ffmpeg -i 1.mp4 -vf "scale=360:640" -c:a copy output_video.mp4
+ffmpeg -i input_video.mp4 -c copy -an output_video.mp4
+ffmpeg -i 2.mp4 -c copy -an output_video.mp4
+ffmpeg -i 2.mp4 -i 2.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
+ffmpeg -i 2.mp4 -i 2.mp3 -c:v copy -c:a aac -strict experimental -shortest output_combined.mp4
+ffmpeg -i input_audio.mp3 -t 21 -c:a copy output_cut_audio.mp3
+ffmpeg -i 2.mp4 -i F.png -filter_complex "overlay=10:10" output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "overlay=10:10" -c:v copy -c:a copy output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:10[scaled];[scaled]scale=100:100[logo];[0:v][logo]overlay=W-w-10:10" -c:a copy output_video_with_logo.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10[outv]" -map "[outv]" -map 0:a output_video.mp4
+ffmpeg -i 2.mp4 -i F.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10[outv]" -map "[outv]" -c:a copy output_video.mp4
+
+
+ffmpeg -i input_video.mp4 -i logo.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i input_video.mp4 -i logo.png -filter_complex "[1:v]scale=50:50[logo];[0:v][logo]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i background_video.mp4 -i overlay_video.mp4 -filter_complex "[0:v][1:v]scale=WIDTH:HEIGHT [ovrl]; [ovrl]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+scale=100:100
+
+ffmpeg -i input_video.mp4 -i logo.png -filter_complex "[0:v][1:v]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i input_video.mp4 -i logo.png -filter_complex "[1:v]scale=50:50[logo];[0:v][logo]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+ffmpeg -i background_video.mp4 -i overlay_video.mp4 -filter_complex "[0:v][1:v]scale=WIDTH:HEIGHT [ovrl]; [ovrl]overlay=W-w-10:H-h-10" -c:a copy output_video.mp4
+scale=100:100
+ffmpeg -i A.mp4 -vcodec copy -acodec copy -encryption_scheme cenc-aes-ctr -encryption_key 76a6c65c5ea762046bd749a2e632ccbb -encryption_kid a7e61c373e219033c21091fa607bf3b8 encrypted.mp4
+ffmpeg -i A.mp4 -vcodec copy -encryption_scheme cenc-aes-ctr -encryption_key 76a6c65c5ea762046bd749a2e632ccbb -encryption_kid a7e61c373e219033c21091fa607bf3b8 encrypted.mp4
+ffplay encrypted.mp4 -decryption_key 76a6c65c5ea762046bd749a2e632ccbb
+ffmpeg -decryption_key 76a6c65c5ea762046bd749a2e632ccbb -i encrypted.mp4 Decryt.mp4
+ffmpeg -framerate 1/5 -f image2 -i W_%d.jpg -r 25 -c:v png testImg2.avi -y
+ffmpeg -i testImg2.avi -f image2 imagesNew%03d.png -y
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ffmpeg -framerate 24 -i W_%d.jpg output.mp4
+ffmpeg -framerate 1/5 -i W_%d.jpg output.mp4
+ffmpeg -start_number 126 -i img%03d.png -pix_fmt yuv420p out.mp4
+ffmpeg -loop 1 -i img.jpg -c:v libx264 -t 30 -pix_fmt yuv420p out.mp4
+ffmpeg -f concat -i input.txt -vsync vfr -pix_fmt yuv420p output.mp4
+input.txt
+file '/path/to/dog.png'
+duration 5
+file '/path/to/cat.png'
+duration 1
+file '/path/to/rat.png'
+duration 3
+file '/path/to/tapeworm.png'
+duration 2
+file '/path/to/tapeworm.png'
+----------------------------------------------------------------------------
+ffmpeg -i A.mp4 -c copy -map 0 -f segment -segment_time 15 -reset_timestamps 1 -segment_format_options movflags=+faststart out%03d.mp4
+
+ffmpeg -i A.mp4 -i 1.mp4 -filter_complex " [1:v]scale=iw/4:-1:flags=lanczos[loc0]; [0:v]transpose=1,setpts='if(eq(N,0),PTS,PTS+2.501/TB)',fps=30[rotate1]; [rotate1][loc0]overlay=main_w-overlay_w-10:main_h-overlay_h-10:eof_action=pass[rem0]; [0:a]adelay=2501|2501,apad[0a]; [0a][1:a]amerge=inputs=2[a]" -map "[rem0]" -map "[a]" -ac 2 -vcodec libx264 -ar 44100 -acodec aac completed.mp4
+--------------------------------------------------------------------------------
+ffmpeg -framerate 30 -i "W_%d.jpg" -c:v libx265 -crf 28 output.mp4
+ffmpeg -r 1/5 -i img%%03d.jpg -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i W_%d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -vf "fps=25,format=yuv420p" out.mp4
+-------------------------------------------------------------
+mylist.txt
+file '/path/to/file1.mp4'
+file '/path/to/file2.mp4'
+file '/path/to/file3.mp4'    
+ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
+
+---------------------------------------------------------------------------
+ffmpeg -loop 1 -i W_%d.jpg -i 5.mp3 -c:v libx264 -c:a aac -b:a 192k -shortest out.mp4
+ffmpeg -loop 1 -i W_%d.jpg -i 5.mp3 -c:v libx264 -c:a copy -shortest out.mp4
+ffmpeg -r 23.977 -i %06d.tif -c:v copy out.mkv
+ffmpeg -r 23.977 -i %06d.tif out.mkv
+ffmpeg.exe -ss 76 -t 10 -i in.mp4 -an out.mp4
+-------------------------------------------------------------------------------------------------------
+ffmpeg -i 2.mp3 -i A.mp4 -filter_complex "[0:a][1:a]amerge,pan=stereo|c0
+ffmpeg -i 2.mp3 -i A.mp4 -filter_complex \"[0:a][1:a]amerge,pan=stereo:c0<c0+c2:c1<c1+c3[out]" \-map 1:v -map "[out]" -c:v copy -c:a libfdk_aac -shortest output.mp4
+
+ffmpeg -i A.mp4 -i 2.mp3 -filter_complex "[0:a][1:a]amerge=inputs=2[a]" -map 0:v -map "[a]" -c:v copy -ac 2 output.mkv
+ffmpeg -i A.mp4 -stream_loop -1 -i 2.mp3 -c:v copy -filter_complex "[0:a]aformat=fltp:44100:stereo,apad[0a];[1]aformat=fltp:44100:stereo,volume=0.08[1a];[0a][1a]amerge[a]" -map 0:v -map "[a]" -ac 2 -shortest output.mp4
+-----------------------------------------------------------------------------------------------------------
+ffmpeg -i A.mp4 -vcodec copy -acodec copy -encryption_scheme cenc-aes-ctr -encryption_key 76a6c65c5ea762046bd749a2e632ccbb -encryption_kid a7e61c373e219033c21091fa607bf3b8 encrypted.mp4
+ffmpeg -i A.mp4 -vcodec copy -encryption_scheme cenc-aes-ctr -encryption_key 76a6c65c5ea762046bd749a2e632ccbb -encryption_kid a7e61c373e219033c21091fa607bf3b8 encrypted.mp4
+ffplay encrypted.mp4 -decryption_key 76a6c65c5ea762046bd749a2e632ccbb
+ffmpeg -decryption_key 76a6c65c5ea762046bd749a2e632ccbb -i encrypted.mp4 Decryt.mp4
+ffmpeg -framerate 1/5 -f image2 -i W_%d.jpg -r 25 -c:v png testImg2.avi -y
+ffmpeg -i testImg2.avi -f image2 imagesNew%03d.png -y
+-----------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+;-=-=-=-=-=-=-=-=-=-=-=-=- END -=-=-=-=-=--=-=-=-=-=-=-=-=-;
+</textarea>
+</Center>
+</body>
+</html>

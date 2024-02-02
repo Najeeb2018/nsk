@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+<title>NAJEEB ALL CLI COMMANDS</title></head>
+<body>
+<form name="jumpy">
+<select name="example" size="1" onChange="gone()">
+<!-- CHANGE THE BELOW URLS TO YOUR OWN-->
+<option value="./CMD.html" selected>CMD</option>
+<option value="./BATCH.html">BATCH</option>
+<option value="./FFMPEG.html">FFMPEG</option>
+<option value="./FOLDER.html">FOLDER</option>
+<option value="./MAGICK.html">MAGICK</option>
+<option value="./NIRCMD.html">NIRCMD</option>
+<option value="./WEB.html">WEB-TOOLS</option>
+</select>
+
+<input type="button" name="test" value="Go!"
+onClick="gone()">
+</form>
+
+<script language="javascript">
+<!--
+
+//Drop-down Document Viewer- (c) Dynamic Drive (www.dynamicdrive.com)
+//For full source code, 100's more DHTML scripts, and TOS,
+//visit http://www.dynamicdrive.com
+
+//Specify display mode (0 or 1)
+//0 causes document to be displayed in an inline frame, while 1 in a new browser window
+var displaymode=0
+//if displaymode=0, configure inline frame attributes (ie: dimensions, intial document shown
+var iframecode='<iframe id="external" style="width:100%;height:650px" src="./TXT.html"></iframe>'
+
+/////NO NEED TO EDIT BELOW HERE////////////
+
+if (displaymode==0)
+document.write(iframecode)
+
+function gone(){
+var selectedurl=document.jumpy.example.options[document.jumpy.example.selectedIndex].value
+if (document.getElementById&&displaymode==0)
+document.getElementById("external").src=selectedurl
+else if (document.all&&displaymode==0)
+document.all.external.src=selectedurl
+else{
+if (!window.win2||win2.closed)
+win2=window.open(selectedurl)
+//else if win2 already exists
+else{
+win2.location=selectedurl
+win2.focus()
+}
+}
+}
+//-->
+</script>
+</body>
+</html>

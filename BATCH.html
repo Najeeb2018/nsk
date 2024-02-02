@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head><Title>Najeeb CMD All Commands</Title>
+<style>
+textarea {
+  resize: none;
+  width: 950px;
+  height: 650px;
+ font-size: 18px;
+}
+</style>
+</head>
+<body>
+<Center>
+<textarea id="w3review" name="w3review" rows="26" cols="50">
+[Najeeb Batch CMD Commands]
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+; Rename All Files in Dir (1,2,3.jpg) Ext Change
+;--------------------------------------------------------;
+@echo off & setlocal EnableDelayedExpansion 
+set a=1
+for /f "delims=" %%i in ('dir /b *.jpg') do (
+  ren "%%i" "!a!.jpg" 
+  set /a a+=1
+) 
+;******************************************;
+;  Rename All Files in Dir 
+;---------------------------------------;
+@echo off & setlocal EnableDelayedExpansion 
+set a=1
+for /f "delims=" %%i in ('dir /b *') do (
+  if not "%%~nxi"=="%~nx0" (
+    ren "%%i" "!a!" 
+    set /a a+=1
+ ) 
+) 
+;******************************************;
+;  Rename All Files in Dir 
+;---------------------------------------;
+FOR /f "delims=: tokens=1*" %A in ('dir /b *.jpg^|findstr /n "^"') do @ren "%B" "%A%~xB"
+;******************************************;
+;  Change All Files Extensions in Dir 
+;--------------------------------------------;
+FOR /R %x in (*.txt) do ren "%x" *.ini
+;******************************************;
+-=-=-=-=-=-=-=-=-=-=-=-=- END WEB URLS -=-=-=-=-=-=-=-=-=-=-=-=-
+</textarea>
+</Center>
+</body>
+</html>

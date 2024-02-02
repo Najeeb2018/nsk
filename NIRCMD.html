@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head><Title>Najeeb CMD All Commands</Title>
+<style>
+textarea {
+  resize: none;
+  width: 950px;
+  height: 650px;
+ font-size: 18px;
+}
+</style>
+</head>
+<body>
+<Center>
+<textarea id="w3review" name="w3review" rows="26" cols="50">
+[Najeeb All NIRCMD Commands]
+APP\nircmd.exe setwallpaper "C:\Path\to\wallpaper.jpg"
+APP\nircmd.exe openurl "https://www.example.com"
+APP\nircmd.exe hibernate
+APP\nircmd.exe standby
+APP\nircmd.exe systray 0
+APP\nircmd.exe monitor off
+APP\nircmd.exe speak text "Hello, this is a test message."
+APP\nircmd.exe execmd "C:\Path\to\program.exe" param1 param2
+APP\nircmd.exe exitwin poweroff force
+APP\nircmd.exe mediaplay 190000 D:\VIDEOS\MP3\BALA.mp3
+APP\nircmd.exe emptybin & Exit
+APP\nircmd.exe savescreenshot "~$folder.desktop$\PIC~$loopcou$.jpg" & Exit
+APP\nircmd.exe loop 10 60000 savescreenshot "~$folder.desktop$\P~$loopcount$.png" & Exit
+APP\nircmd.exe mutesysvolume 1
+APP\nircmd.exe mutesysvolume 0
+APP\nircmd.exe filldelete "C:\Users\Najeeb\AppData\Local\Temp\*.*"
+APP\nircmd.exe convertimage "c:\temp\test1.gif" "c:\temp\test1.png"
+;******************************************************
+[NIRCMD COMMAND]
+APP\nircmd.exe exitwin poweroff force
+APP\nircmd.exe mediaplay 190000 C:\Windows\BD.mp3
+APP\nircmd.exe shellcopy %CD% C:\Users\Najeeb\Desktop\APP
+APP\nircmd.exe filldelete %CD%\*.*
+APP\nircmd.exe emptybin & Exit
+APP\nircmd.exe savescreenshot "~$folder.desktop$\PIC~$loopcou$.jpg" & Exit
+APP\nircmd.exe loop 10 60000 savescreenshot "~$folder.desktop$\P~$loopcount$.png" & Exit
+APP\nircmd.exe shellcopy "D:\APP\*.*" "E:\FTP" & Exit
+APP\nircmd.exe mutesysvolume 1
+APP\nircmd.exe mutesysvolume 0
+APP\nircmd.exe filldelete "C:\Users\Najeeb\AppData\Local\Temp\*.*"
+APP\nircmd.exe convertimage "c:\temp\test1.gif" "c:\temp\test1.png"
+APP\nircmd.exe mediaplay 10000 "c:\temp\1.mp3"
+APP\nircmd.exe shortcut "C:\windows\system32\calc.exe" "~$folder.desktop$" "Windows Calculator"
+APP\nircmd.exe speak text ~$clipboard$
+APP\nircmd.exe speak file "c:\temp\speak1.txt"
+APP\nircmd.exe urlshortcut "http://www.google.com" "~$folder.favorites\Search Engines" "Google"
+APP\nircmd.exe changesysvolume 2000
+APP\nircmd.exe beep 500 2000
+APP\nircmd.exe changesysvolume -5000 
+APP\nircmd.exe changesysvolume 5000
+APP\nircmd.exe changeappvolume wmplayer.exe 0.55 Speakers 
+APP\nircmd.exe changeappvolume /1275 -0.25 1 
+APP\nircmd.exe changeappvolume Firefox.exe 0.5 
+APP\nircmd.exe changesysvolume -3000 
+APP\nircmd.exe changesysvolume 0x1000 waveout 
+APP\nircmd.exe changesysvolume 0x1000 master 1 
+APP\nircmd.exe changesysvolume2 1000 -1000 
+APP\nircmd.exe changesysvolume2 -3000 0 
+APP\nircmd.exe changesysvolume2 0 -5000 waveout 
+APP\nircmd.exe changesysvolume2 -3000 0 master 1 
+APP\nircmd.exe changebrightness 7 
+APP\nircmd.exe changebrightness -10 
+APP\nircmd.exe changebrightness 5 2 
+APP\nircmd.exe cmdshortcut "~$folder.desktop$" "Switch Volume" mutesysvolume 2 
+APP\nircmd.exe changeappvolume iexplore.exe -0.2 
+APP\nircmd.exe convertimage "c:\temp\test1.gif" "c:\temp\test1.png" 
+APP\nircmd.exe convertimages "c:\temp\a*.gif" .png 
+APP\nircmd.exe convertimages "c:\temp\*.jpg" .gif
+APP\nircmd.exe clipboard set "123456" 
+APP\nircmd.exe clipboard set ~$folder.desktop$ 
+APP\nircmd.exe clipboard set ~$folder.start_menu$ 
+APP\nircmd.exe clipboard readfile "C:\Users\Najeeb\Desktop\NajeebText.txt" 
+APP\nircmd.exe clipboard addfile "C:\Users\Najeeb\Desktop\clip1.txt" 
+APP\nircmd.exe clipboard clear
+APP\nircmd.exe clipboard saveimage "C:\Users\Najeeb\Desktop\clip01.png" 
+APP\nircmd.exe clipboard saveimage "C:\Users\Najeeb\Desktop\clip01.gif" 
+APP\nircmd.exe clipboard copyimage "C:\Users\Najeeb\Desktop\img01.gif" 
+APP\nircmd.exe clipboard saveclp "C:\Users\Najeeb\Desktop\1.clp" 
+APP\nircmd.exe clipboard loadclp "C:\Users\Najeeb\Desktop\1.clp"
+APP\nircmd.exe cdrom open 
+APP\nircmd.exe cdrom close 
+APP\nircmd.exe cdrom open F: 
+APP\nircmd.exe cdrom close R: 
+APP\nircmd.exe clonefiletime "c:\temp\file1.txt" "c:\files\*.txt" 
+APP\nircmd.exe clonefiletime "c:\temp\file1.txt" "c:\temp\file2.txt"
+APP\nircmd.exe closeprocess iexplore.exe 
+APP\nircmd.exe closeprocess "c:\winnt\system32\calc.exe" 
+APP\nircmd.exe closeprocess /1830 
+APP\nircmd.exe cmdwait 2000 savescreenshot "DATA\shot.png"
+APP\nircmd.exe cmdwait 2000 savescreenshotwin "DATA\winshot.png"
+APP\nircmd.exe cmdshortcut "~$folder.desktop$" "Open CDROM" cdrom open k: 
+APP\nircmd.exe cmdshortcut "c:\temp" "Turn Monitor Off" monitor off 
+APP\nircmd.exe cmdshortcut " "~$folder.desktop$ "Close All IE" win close class "IEFrame"
+APP\nircmd.exe cmdshortcutkey "~$folder.desktop$" "Open CDROM" "Ctrl+Shift+K" cdrom open k: 
+APP\nircmd.exe cmdshortcutkey "c:\temp" "Turn Monitor Off" "Ctrl+Shift+M" monitor off 
+APP\nircmd.exe cmdwait 1000 monitor off 
+APP\nircmd.exe dlg "explorer.exe" "run" settext 12298 "calc.exe" 
+APP\nircmd.exe dlg "explorer.exe" "run" click ok 
+APP\nircmd.exe dlg "explorer.exe" "" click yes 
+APP\nircmd.exe dlg "" "" click cancel 
+APP\nircmd.exe exitwin logoff 
+APP\nircmd.exe exitwin poweroff 
+APP\nircmd.exe elevate notepad.exe 
+APP\nircmd.exe elevate notepad.exe C:\Windows\System32\Drivers\etc\HOSTS 
+elevate "c:\program files\my software\abc.exe" 
+elevatecmd regsetval binary "HKLM\Software\Test" "Value1" "6a cb ab dd 80 86 95" 
+emptybin
+emptybin f: 
+exec show "f:\winnt\system32\calc.exe" 
+exec hide "c:\temp\wul.exe" /savelangfile 
+exec max "c:\temp\test.exe" 
+exec2 show "f:\winnt\system32" "f:\winnt\system32\calc.exe" 
+exec2 hide c:\temp "c:\temp\wul.exe" /savelangfile 
+execmd del "~$folder.desktop$\calc.lnk" 
+execmd mkdir f:\temp\desktop1 
+execmd copy "~$folder.desktop$\*.lnk" f:\temp\desktop 
+exitwin reboot
+exitwin poweroff force
+exitwin logoff forceifhung 
+filldelete "C:\Users\Najeeb\AppData\Local\Temp\*.*" 
+filldelete "c:\temp\myfile.dat" 
+gac install "C:\temp\MyAssembly\bin\Release\6\MyAssembly.dll" 
+hibernate force 
+hibernate 
+infobox "Hello !" "This is the first message"
+infobox "Hello !" "This is the second message"
+infobox "Hello !" "This is the third message"
+infobox "This is a message box !" "message" 
+inidelsec "c:\windows\test.ini" "section1" 
+inidelval "c:\windows\test.ini" "section1" "TestValue" 
+inisetval "c:\windows\test.ini" "section1" "TestValue" "1" 
+initshutdown "shutting down the system within 60 seconds" 60 reboot
+initshutdown "" 0 force 
+killprocess iexplore.exe 
+killprocess "c:\winnt\system32\calc.exe" 
+killprocess /1830 
+loop 100 5000 savescreenshot "DATA\P~$currdate.MM_dd_yyyy$-~$currtime.HH_mm_ss$.png"
+loop 3 2000 speak text "Call Number ~$loopcount$"
+loop 10 60000 savescreenshot c:\temp\scr~$loopcount$.png
+monitor off
+monitor on
+movecursor 10 10 
+monitor async_off 
+mediaplay 10000 "c:\temp\1.mp3" 
+mediaplay 180000 "c:\my files\1.wav" 
+multiremote copy "c:\temp\computers.txt" exitwin poweroff force 
+memdump iexplore.exe "c:\temp\dump.txt" "16" "0x10000" "0x400000" 
+memdump calc.exe "c:\temp\calc.txt" "32" "0x30000" "0x400000" nohex 
+memdump /525 "c:\temp\dump.txt" "16" "0x100000" "0x120000" noascii 
+movecursor 10 10 
+multiremote "c:\temp\computers.txt" exitwin poweroff force 
+multiremote "c:\temp\computers.txt" lockws 
+multiremote copy "c:\temp\computers.txt" monitor off
+multiremote copy "c:\temp\computers.txt" exec hide c:\temp\wul.exe /shtml "c:\temp\wul_~$sys.computername$.html"
+mutesysvolume 1 
+mutesysvolume 0 
+mutesysvolume 2 
+muteappvolume iexplore.exe 0 
+muteappvolume wmplayer.exe 1 Speakers 
+muteappvolume /1275 2 1 
+muteappvolume Firefox.exe 1 
+mutesubunitvolume "Speakers" "Line In" 0 
+mutesubunitvolume "Speakers" "Microphone" 1 
+mutesysvolume 2 waveout 
+mutesysvolume 1 master 1
+paramsfile "c:\temp\folders.txt" "" "" execmd md ~$fparam.1$ 
+paramsfile "c:\temp\shortcuts.txt" "," "~q" shortcut ~$fparam.1$ "~$folder.desktop$" ~$fparam.2$ 
+qbox "Do you want to run the calculator ?" "question" "calc.exe" 
+qboxcom "Do you want to lock your workstation ?" "question" lockws 
+qboxcom "Do you want to turn off the monitor ?" "monitor" monitor off 
+qboxcom "Do you want to reboot ?" "question" exitwin reboot 
+qboxcom "Do you want to continue ?" "question" returnval 0x30
+regdelkey "HKEY_CURRENT_USER\Software\Test" 
+regdelval "HKEY_CURRENT_USER\Software\Test" "Value1"
+regedit "HKLM\Software\Microsoft\Windows\CurrentVersion" "CommonFilesDir" 
+regedit "HKEY_CURRENT_USER\Control Panel\Desktop" "Wallpaper" 
+regsetval dword "HKEY_CURRENT_USER\Software\Test" "Value1" "0xaabbccdd" 
+regsetval dword "HKCU\Software\Test" "Value2" "10561" 
+regsetval sz "HKCU\Software\Test" "Value3" "string value" 
+regsetval binary "HKLM\Software\Test" "Value4" "6a cb ab dd 80 86 95"
+regsvr reg "f:\winnt\system32\fv*.ocx" "c:\temp\log1.txt" 
+regsvr unreg "f:\winnt\system32\ab*.dll" 
+remote copy \\comp1 exitwin poweroff 
+remote \\comp2 infobox "This is a message from NirCmd" "Hello !" 
+remote \\comp3 lockws 
+Restarts Windows Explorer gracefully. 
+rasdial "My Internet" 
+rashangup "My Internet"
+setdialuplogon "VPN1" "user1" "asder443" "domain1" 
+setdialuplogon "Internet1" "nirs3" "q5r4df7yh5"  
+savescreenshotwin "DATA\winshot.png" 
+savescreenshotwin *clipboard*
+savescreenshot "DATA\shot.png" 
+savescreenshot "DATA\shot.png" 50 50 300 200 
+savescreenshot *clipboard* 150 150 400 400
+shellcopy "D:\NirCmd\*.*" "DATA" 
+shellcopy "D:\NirCmd\*.*" "DATA" yestoall noerrorui 
+setsysvolume 65535 
+screensaver
+screensavertimeout 30
+screensavertimeout 90
+sendkey shift down 
+sendkey ctrl down 
+sendkey esc down 
+sendkey shift up 
+sendkey ctrl up 
+sendkey esc up 
+sendkey a press 
+sendkey f10 press 
+sendkey enter press 
+sendkey 0x2e press 
+sendmouse right click 
+sendmouse left dblclick 
+sendmouse left down 
+sendmouse move -30 20 
+sendmouse left up 
+sendmouse wheel 1200 
+stdbeep
+service start schedule 
+service \\remote stop schedule 
+service restart w3svc 
+standby 
+setappvolume iexplore.exe 0.2 
+setappvolume wmplayer.exe 0.75 Speakers 
+setappvolume /1275 0.25 1 
+setappvolume Firefox.exe 0.5 
+setappvolume focused 0.75 
+setbrightness 50 
+setbrightness 40 1 
+setbrightness 60 2 
+0 - black ,1 - blue ,2 - green ,3 - cyan ,4 - red ,5 - magenta ,6 - brown 
+7 - white ,8 - dark gray,9 - bright blue ,10 - bright green,11 - bright cyan 
+12 - bright red ,13 - bright magenta ,14 - bright yellow ,15 - bright white 
+setconsolecolor 10 0 
+setconsolecolor 1 15 
+setcursor 100 50 
+setdefaultsounddevice "Line In" 
+setdefaultsounddevice "Microphone" 2 
+setdisplay 800 600 24 -updatereg 
+setdisplay 1024 768 24 90 
+setdisplay 1024 768 8 
+setdisplay monitor:1 1024 768 24 90 
+setdisplay monitor:name1 1024 768 24 90 
+setfilefoldertime "c:\temp\myfolder" "10-01-2003 11:22:12" "12-11-2002 02:34:11" 
+setfilefoldertime "c:\temp\myfolder" now now 
+setfiletime "c:\temp\*.exe" "15-05-2004 11:22:12" "22-01-2005 21:22:55" 
+setfiletime "c:\temp\myfile.txt" "24-06-2003 17:57:11" "" "22-11-2005 10:21:56" 
+speak text ~$clipboard$
+speak file "c:\temp\speak.txt" 0 100 "c:\temp\speak.wav" 48kHz16BitStereo 
+setfiletime "c:\temp\myfile.txt" now now 
+setprimarydisplay 1 
+setprimarydisplay 2 
+setprimarydisplay \\.\DISPLAY3 
+setprocessaffinity iexplore.exe 0 1 
+setprocessaffinity "c:\winnt\system32\calc.exe" 0 1 2 3 
+setprocessaffinity /1830 0 
+setprocesspriority iexplore.exe high 
+setprocesspriority "c:\winnt\system32\calc.exe" low 
+setprocesspriority /1830 abovenormal 
+setsysvolume2 10000 20000 
+setsysvolume2 30000 0 
+setsysvolume2 25000 15000 waveout 
+setsysvolume2 30000 0 master 1 
+setvolume 0 0 0 
+setvolume 0 32768 32768 
+setvolume 0 0xffff 0 
+shellcopy "c:\temp\*.*" "d:\temp" 
+shellcopy "c:\temp\*.*" "d:\temp" yestoall noerrorui 
+shexec "open" "c:\my documents\abc.doc" 
+shexec "print" "d:\files\1.pdf" 
+shexec "open" "http://www.nirsoft.net" 
+shortcut "f:\winnt\system32\calc.exe" "~$folder.desktop$" "Windows Calculator" 
+shortcut "f:\winnt\system32\calc.exe" "~$folder.programs$\Calculators" "Windows Calculator" 
+shortcut "f:\Program Files\KaZaA\Kazaa.exe" "c:\temp\MyShortcuts" "Kazaa" 
+APP\nircmd.exe shortcut "f:\Program Files" "c:\temp\MyShortcuts" "Program Files Folder" "" "f:\winnt\system32\shell32.dll" 45 
+APP\nircmd.exe shortcut "f:\Program Files" "c:\temp\MyShortcuts" "Program Files Folder" "" "" "" "max"
+APP\nircmd.exe speak text ~$clipboard$ 
+APP\nircmd.exe speak text "Please visit the Web site of NirSoft at http://www.nirsoft.net" 2 80 
+APP\nircmd.exe speak file "c:\temp\speak1.txt" 
+APP\nircmd.exe speak file "c:\temp\speak1.txt" 0 100 "c:\temp\speak.wav" 48kHz16BitStereo 
+APP\nircmd.exe standby force 
+APP\nircmd.exe standby
+APP\nircmd.exe trayballoon "Hello" "This is a test..." "shell32.dll,22" 15000 
+APP\nircmd.exe trayballoon "Hello" "This is the text that will be appear inside the balloon !" "shell32.dll,-154" 10000 
+APP\nircmd.exe trayballoon "Hello" "This is the text that will be appear inside the balloon !" "c:\temp\icon1.ico" 10000 
+APP\nircmd.exe urlshortcut "http://www.nirsoft.net" "~$folder.favorites$" "NirSoft Web Site" 
+APP\nircmd.exe urlshortcut "http://www.google.com" "~$folder.favorites$\Search Engines" "Google" 
+APP\nircmd.exe urlshortcut "http://www.yahoo.com" "c:\temp" "Yahoo" 
+APP\nircmd.exe wait 1000 
+APP\nircmd.exe wait 500 
+APP\nircmd.exe win hide class progman 
+APP\nircmd.exe win show class progman 
+APP\nircmd.exe win close class "CabinetWClass" 
+APP\nircmd.exe win child class "Shell_TrayWnd" hide class "button"
+APP\nircmd.exe win child class "Shell_TrayWnd" show class
+APP\nircmd.exe waitprocess iexplore.exe 
+APP\nircmd.exe waitprocess firefox.exe speak text "Firefox was closed" 
+APP\nircmd.exe waitprocess "c:\winnt\system32\calc.exe" 
+APP\nircmd.exe waitprocess /1830 
+APP\nircmd.exe win close title "calculator" 
+APP\nircmd.exe win hide stitle "calculat" 
+APP\nircmd.exe win hide ititle "culat" 
+APP\nircmd.exe win show class "SciCalc" 
+APP\nircmd.exe win activate title "my computer" 
+APP\nircmd.exe win flash title "calculator" 10 500 
+win max handle 0x00009c01 
+APP\nircmd.exe win redraw alltop 
+APP\nircmd.exe win trans ititle "internet explorer" 192 
+APP\nircmd.exe win setsize class "IEFrame" 50 50 400 300 
+APP\nircmd.exe win settopmost class "SciCalc" 1 
+APP\nircmd.exe win child class "Shell_TrayWnd" hide class "button" 
+APP\nircmd.exe win child class "Shell_TrayWnd" show class "button" 
+APP\nircmd.exe win child title "calculator" hide id 128 
+APP\nircmd.exe win -style title "my computer" 0x00C00000 
+APP\nircmd.exe win child title "my computer" +exstyle all 0x00400000 
+APP\nircmd.exe win sendmsg title "calculator" 0x10 0 0 
+win dlgclick class "#32770" cancel 
+APP\nircmd.exe win max process firefox.exe 
+APP\nircmd.exe win max process /1275 
+APP\nircmd.exe win togglehide class MozillaWindowClass 
+APP\nircmd.exe win trans ititle "internet explorer" 192 
+APP\nircmd.exe win min class "IEFrame"
+APP\nircmd.exe win close class "IEFrame" 
+APP\nircmd.exe win close class "CabinetWClass"
+APP\nircmd.exe win hide class "IEFrame"
+APP\nircmd.exe win show class "IEFrame"
+APP\nircmd.exe win center alltop 
+APP\nircmd.exe win -style title "my computer" 0x00C00000 
+APP\nircmd.exe win +style title "my computer" 0x00C00000 
+APP\nircmd.exe win +exstyle title "my computer" 0x00400000 
+APP\nircmd.exe win child title "my computer" +exstyle all 0x00400000
+;-=-=-=-=-=-=-=-=-=-=-=-=- END -=-=-=-=-=--=-=-=-=-=-=-=-=-;
+</textarea>
+</Center>
+</body>
+</html>
